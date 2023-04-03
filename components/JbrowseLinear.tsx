@@ -31,10 +31,10 @@ type ViewModel = ReturnType<typeof createViewState>;
 
 export default function CustomJbrowse({
   selectedFiles = [],
-  configuration,
+  options,
 }: {
   selectedFiles?: any[];
-  configuration?: ViewModel;
+  options?: ViewModel;
 }) {
   const [viewState, setViewState] = useState<ViewModel>();
 
@@ -43,7 +43,7 @@ export default function CustomJbrowse({
       assembly,
       tracks,
       defaultSession,
-      ...(configuration || {}),
+      ...(options || {}),
     });
     setViewState(state);
   }, []);

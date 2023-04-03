@@ -23,17 +23,17 @@ import tracks from "../jbrowse/tracks";
 import { defaultCircularSession as defaultSession } from "../jbrowse/defaultSession";
 import {
   createViewState,
-  //   JBrowseCircularGenomeView,
+  JBrowseCircularGenomeView,
 } from "@jbrowse/react-circular-genome-view";
 
 type ViewModel = ReturnType<typeof createViewState>;
 
 export default function CustomJbrowse({
   selectedFiles = [],
-}: // configuration,
-{
+  options,
+}: {
   selectedFiles?: any[];
-  // configuration?: ViewModel;
+  options?: ViewModel;
 }) {
   const [viewState, setViewState] = useState<ViewModel>();
 
@@ -42,6 +42,7 @@ export default function CustomJbrowse({
       assembly,
       tracks,
       defaultSession,
+      ...(options || {}),
     });
     setViewState(state);
   }, []);
@@ -50,5 +51,9 @@ export default function CustomJbrowse({
     return null;
   }
 
-  return <div>{/* <JBrowseCircularGenomeView viewState={viewState} /> */}</div>;
+  return (
+    <div>
+      <JBrowseCircularGenomeView viewState={viewState} />
+    </div>
+  );
 }
