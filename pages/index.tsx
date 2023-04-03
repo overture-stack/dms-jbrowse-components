@@ -26,7 +26,7 @@ export default function Home() {
       <h1>Jbrowse Prototype</h1>
       <ul>
         {pageLinks.map((link) => (
-          <li>
+          <li key={link.url}>
             <Link href={link.url}>{link.text}</Link>: {link.description}
           </li>
         ))}

@@ -49,10 +49,8 @@ export default function Document() {
           </h2>
           <ul>
             {pageLinks.map((link) => (
-              <li>
-                <Link key="link.url" href={link.url}>
-                  {link.text}
-                </Link>
+              <li key={link.url}>
+                <Link href={link.url}>{link.text}</Link>
               </li>
             ))}
           </ul>
