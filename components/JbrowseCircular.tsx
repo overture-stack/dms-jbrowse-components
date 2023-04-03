@@ -17,20 +17,38 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Link from "next/link";
-import { pageLinks } from "./_document";
+import { useEffect, useState } from "react";
+import assembly from "../jbrowse/assembly";
+import tracks from "../jbrowse/tracks";
+import { defaultCircularSession as defaultSession } from "../jbrowse/defaultSession";
+import {
+  createViewState,
+  //   JBrowseCircularGenomeView,
+} from "@jbrowse/react-circular-genome-view";
 
-export default function Home() {
-  return (
-    <>
-      <h1>Jbrowse Prototype</h1>
-      <ul>
-        {pageLinks.map((link) => (
-          <li>
-            <Link href={link.url}>{link.text}</Link>: {link.description}
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+type ViewModel = ReturnType<typeof createViewState>;
+
+export default function CustomJbrowse({
+  selectedFiles = [],
+}: // configuration,
+{
+  selectedFiles?: any[];
+  // configuration?: ViewModel;
+}) {
+  const [viewState, setViewState] = useState<ViewModel>();
+
+  useEffect(() => {
+    const state = createViewState({
+      assembly,
+      tracks,
+      defaultSession,
+    });
+    setViewState(state);
+  }, []);
+
+  if (!viewState) {
+    return null;
+  }
+
+  return <div>{/* <JBrowseCircularGenomeView viewState={viewState} /> */}</div>;
 }

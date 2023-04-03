@@ -17,20 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Link from "next/link";
-import { pageLinks } from "./_document";
+import JbrowseCircular from "../components/JbrowseCircular";
 
-export default function Home() {
+export default function CircularPage() {
   return (
     <>
-      <h1>Jbrowse Prototype</h1>
-      <ul>
-        {pageLinks.map((link) => (
-          <li>
-            <Link href={link.url}>{link.text}</Link>: {link.description}
-          </li>
-        ))}
-      </ul>
+      <h1>Linear Genome View</h1>
+      <JbrowseCircular />
     </>
   );
 }

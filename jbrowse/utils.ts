@@ -17,20 +17,35 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Link from "next/link";
-import { pageLinks } from "./_document";
-
-export default function Home() {
-  return (
-    <>
-      <h1>Jbrowse Prototype</h1>
-      <ul>
-        {pageLinks.map((link) => (
-          <li>
-            <Link href={link.url}>{link.text}</Link>: {link.description}
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
+export const assembly = {
+  name: "GRCh38",
+  sequence: {
+    type: "ReferenceSequenceTrack",
+    trackId: "GRCh38-ReferenceSequenceTrack",
+    adapter: {
+      type: "BgzipFastaAdapter",
+      fastaLocation: {
+        uri: "http://localhost:3000/data/GRCh38.fa.gz",
+        locationType: "UriLocation",
+      },
+      faiLocation: {
+        uri: "http://localhost:3000/data/GRCh38.fa.gz.fai",
+        locationType: "UriLocation",
+      },
+      gziLocation: {
+        uri: "http://localhost:3000/data/GRCh38.fa.gz.gzi",
+        locationType: "UriLocation",
+      },
+    },
+  },
+  aliases: ["hg38"],
+  refNameAliases: {
+    adapter: {
+      type: "RefNameAliasAdapter",
+      location: {
+        uri: "http://localhost:3000/data/GRCh38.aliases.txt",
+        locationType: "UriLocation",
+      },
+    },
+  },
+};

@@ -17,20 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Link from "next/link";
-import { pageLinks } from "./_document";
+const tracks = [
+  {
+    type: "VariantTrack",
+    trackId:
+      "ALL.wgs.shapeit2_integrated_snvindels_v2a.GRCh38.27022019.sites.vcf",
+    name: "1000 Genomes Variant Calls",
+    assemblyNames: ["GRCh38"],
+    category: ["1000 Genomes", "Variants"],
+    adapter: {
+      type: "VcfTabixAdapter",
+      vcfGzLocation: {
+        uri: "http://localhost:3000/data/ALL.wgs.shapeit2_integrated_snvindels_v2a.GRCh38.27022019.sites.vcf.gz",
+      },
+      index: {
+        location: {
+          uri: "http://localhost:3000/data/ALL.wgs.shapeit2_integrated_snvindels_v2a.GRCh38.27022019.sites.vcf.gz.tbi",
+        },
+      },
+    },
+  },
+];
 
-export default function Home() {
-  return (
-    <>
-      <h1>Jbrowse Prototype</h1>
-      <ul>
-        {pageLinks.map((link) => (
-          <li>
-            <Link href={link.url}>{link.text}</Link>: {link.description}
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
+export default tracks;

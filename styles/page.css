@@ -17,20 +17,67 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Link from "next/link";
-import { pageLinks } from "./_document";
+/* CSS for basic page structure, not for Jbrowse */
 
-export default function Home() {
-  return (
-    <>
-      <h1>Jbrowse Prototype</h1>
-      <ul>
-        {pageLinks.map((link) => (
-          <li>
-            <Link href={link.url}>{link.text}</Link>: {link.description}
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+* {
+  font-family: arial;
+  color: #263238;
+  box-sizing: border-box;
+}
+body {
+  background: #eceff1;
+  margin: 0;
+}
+.nav {
+  background: #cfd8dc;
+  padding: 10px;
+  z-index: 100;
+}
+.nav a {
+  text-decoration: none;
+}
+.nav a:hover {
+  text-decoration: underline;
+}
+.nav h2,
+.nav ul {
+  display: inline-block;
+}
+.nav ul {
+  margin: 0;
+  padding: 0;
+}
+.nav li {
+  display: inline;
+  margin-right: 20px;
+}
+.wrapper {
+  max-width: 600px;
+  margin: 50px auto;
+}
+h2 {
+  margin: 0 10px 10px 0;
+}
+@media (min-width: 800px) {
+  .nav {
+    width: 200px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+  }
+  .nav h2,
+  .nav ul {
+    display: block;
+  }
+  .nav ul {
+    padding-left: 20px;
+  }
+  .nav li {
+    display: list-item;
+  }
+  .main {
+    margin-left: 200px;
+  }
 }
