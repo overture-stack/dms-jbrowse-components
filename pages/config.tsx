@@ -17,56 +17,37 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Html, Head, Main, NextScript } from "next/document";
-import Link from "next/link";
+import {
+  createViewState,
+  JBrowseLinearGenomeView,
+} from "@jbrowse/react-linear-genome-view";
+import { useEffect, useState } from "react";
+import config from "../jbrowse/linear/config.json";
 
-export const pageLinks = [
-  {
-    url: "/circular",
-    text: "Circular",
-    description: "Circular genome view",
-  },
-  {
-    url: "/linear",
-    text: "Linear",
-    description: "Linear genome view",
-  },
-  {
-    url: "/linear-circular",
-    text: "Linear & Circular",
-    description: "Linear & circular genome view",
-  },
-  {
-    url: "/config",
-    text: "Config",
-    description: "Config created with CLI",
-  },
-];
+type ViewModel = ReturnType<typeof createViewState>;
 
-export default function Document() {
+export default function CustomJbrowse({
+  selectedFiles = [],
+  options,
+}: {
+  selectedFiles?: any[];
+  options?: ViewModel;
+}) {
+  const [viewState, setViewState] = useState<ViewModel>();
+
+  useEffect(() => {
+    const state = createViewState(config);
+    setViewState(state);
+  }, []);
+
+  if (!viewState) {
+    return null;
+  }
+
   return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <div className="nav">
-          <h2>
-            <Link href="/">Jbrowse Prototype</Link>
-          </h2>
-          <ul>
-            {pageLinks.map((link) => (
-              <li key={link.url}>
-                <Link href={link.url}>{link.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="main">
-          <div className="wrapper">
-            <Main />
-            <NextScript />
-          </div>
-        </div>
-      </body>
-    </Html>
+    <div>
+      <h1>Config from CLI</h1>
+      <JBrowseLinearGenomeView viewState={viewState} />
+    </div>
   );
 }
