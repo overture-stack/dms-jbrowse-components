@@ -23,9 +23,8 @@ import {
 } from "@jbrowse/react-linear-genome-view";
 import { useEffect, useState } from "react";
 import assembly from "../jbrowse/assembly";
-import tracks from "../jbrowse/tracks";
-import { defaultLinearSession as defaultSession } from "../jbrowse/defaultSession";
-import { JBrowseCircularGenomeView } from "@jbrowse/react-circular-genome-view";
+import tracks from "../jbrowse/linear/tracks";
+import defaultSession from "../jbrowse/linear/defaultSession";
 
 type ViewModel = ReturnType<typeof createViewState>;
 

@@ -17,43 +17,27 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {
-  createViewState,
-  JBrowseLinearGenomeView,
-} from "@jbrowse/react-linear-genome-view";
-import { useEffect, useState } from "react";
-import assembly from "../jbrowse/assembly";
-import tracks from "../jbrowse/tracks";
-import { defaultLinearSession as defaultSession } from "../jbrowse/defaultSession";
+const defaultSession = {
+  name: "Default session - Circular",
+  view: {
+    id: "circularView",
+    type: "CircularView",
+    bpPerPx: 5000000,
+    tracks: [
+      {
+        id: "uPdLKHik1",
+        type: "VariantTrack",
+        configuration: "pacbio_sv_vcf",
+        displays: [
+          {
+            id: "v9QVAR3oaB",
+            type: "ChordVariantDisplay",
+            configuration: "pacbio_sv_vcf-ChordVariantDisplay",
+          },
+        ],
+      },
+    ],
+  },
+};
 
-type ViewModel = ReturnType<typeof createViewState>;
-
-export default function CustomJbrowse({
-  selectedFiles = [],
-  configuration,
-}: {
-  selectedFiles?: any[];
-  configuration?: ViewModel;
-}) {
-  const [viewState, setViewState] = useState<ViewModel>();
-
-  useEffect(() => {
-    const state = createViewState({
-      assembly,
-      tracks,
-      defaultSession,
-      ...(configuration || {}),
-    });
-    setViewState(state);
-  }, []);
-
-  if (!viewState) {
-    return null;
-  }
-
-  return (
-    <div>
-      <JBrowseLinearGenomeView viewState={viewState} />
-    </div>
-  );
-}
+export default defaultSession;

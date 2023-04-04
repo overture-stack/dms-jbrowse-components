@@ -19,8 +19,6 @@
 
 import { useEffect, useState } from "react";
 import assembly from "../jbrowse/assembly";
-import tracks from "../jbrowse/tracks";
-import { defaultCircularSession as defaultSession } from "../jbrowse/defaultSession";
 import {
   createViewState,
   JBrowseCircularGenomeView,
@@ -40,8 +38,8 @@ export default function CustomJbrowse({
   useEffect(() => {
     const state = createViewState({
       assembly,
-      tracks,
-      defaultSession,
+      tracks: [],
+      // defaultSession
       ...(options || {}),
     });
     setViewState(state);

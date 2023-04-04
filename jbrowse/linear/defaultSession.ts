@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export const defaultLinearSession = {
+const defaultSession = {
   name: "Default session - Linear",
   margin: 0,
   view: {
@@ -64,25 +64,4 @@ export const defaultLinearSession = {
   },
 };
 
-export const defaultCircularSession = {
-  name: "Default session - Circular",
-  view: {
-    id: "circularView",
-    type: "CircularView",
-    bpPerPx: 5000000,
-    tracks: [
-      {
-        id: "uPdLKHik1",
-        type: "VariantTrack",
-        configuration: "pacbio_sv_vcf",
-        displays: [
-          {
-            id: "v9QVAR3oaB",
-            type: "ChordVariantDisplay",
-            configuration: "pacbio_sv_vcf-ChordVariantDisplay",
-          },
-        ],
-      },
-    ],
-  },
-};
+export default defaultSession;
