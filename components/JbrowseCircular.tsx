@@ -23,27 +23,54 @@ import {
   createViewState,
   JBrowseCircularGenomeView,
 } from "@jbrowse/react-circular-genome-view";
-import defaultSession from "../jbrowse/circular/defaultSession";
 
 type ViewModel = ReturnType<typeof createViewState>;
 
-export default function CustomJbrowse({
-  selectedFiles = [],
-  options,
-}: {
-  selectedFiles?: any[];
-  options?: ViewModel;
-}) {
+const defaultSession = {
+  name: "My session",
+  view: {
+    id: "circularView",
+    type: "CircularView",
+  },
+};
+
+const tracks = [
+  {
+    type: "VariantTrack",
+    trackId: "pacbio_sv_vcf",
+    name: "HG002 Pacbio SV (VCF)",
+    assemblyNames: ["hg38"],
+    category: ["GIAB"],
+    adapter: {
+      type: "VcfTabixAdapter",
+      vcfGzLocation: {
+        uri: "https://s3.amazonaws.com/jbrowse.org/genomes/hg19/pacbio/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz",
+        locationType: "UriLocation",
+      },
+      index: {
+        location: {
+          uri: "https://s3.amazonaws.com/jbrowse.org/genomes/hg19/pacbio/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz.tbi",
+          locationType: "UriLocation",
+        },
+      },
+    },
+  },
+];
+
+export default function CustomJbrowse() {
   const [viewState, setViewState] = useState<ViewModel>();
 
   useEffect(() => {
     const state = createViewState({
       assembly,
-      tracks: [],
+      tracks,
       defaultSession,
-      ...(options || {}),
     });
     setViewState(state);
+
+    tracks.forEach((track) => {
+      state?.session.view.showTrack(track.trackId);
+    });
   }, []);
 
   if (!viewState) {

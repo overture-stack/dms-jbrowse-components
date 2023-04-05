@@ -11,7 +11,7 @@ type TempType = {
 
 const adapterTypes: TempType = {
   BAM: "BAMAdapter",
-  VCF: "VcfTabixAdapter", // check this
+  VCF: "VcfTabixAdapter",
 };
 
 const locationTypes: TempType = {
