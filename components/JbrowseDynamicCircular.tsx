@@ -16,7 +16,7 @@ const adapterTypes: TempType = {
 
 const locationTypes: TempType = {
   BAM: "bamLocation",
-  VCF: "vcfLocation",
+  VCF: "vcfGzLocation",
 };
 
 const trackTypes: TempType = {
