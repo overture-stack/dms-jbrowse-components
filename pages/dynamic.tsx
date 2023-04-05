@@ -39,7 +39,7 @@ const dummyFileOptions: JbrowseInputFile[] = dummyFiles.map((file) => ({
   indexURI: dummyFileRoot + file + ".tbi",
 }));
 
-const DynamicJbrowsePage = () => {
+const DynamicPage = () => {
   const [checkedState, setCheckedState] = useState<{
     [x: string]: boolean;
   }>({});
@@ -71,7 +71,6 @@ const DynamicJbrowsePage = () => {
             />
             {file.fileName}
           </label>
-          <br />
         </div>
       ))}
       <br />
@@ -81,4 +80,4 @@ const DynamicJbrowsePage = () => {
   );
 };
 
-export default DynamicJbrowsePage;
+export default DynamicPage;
