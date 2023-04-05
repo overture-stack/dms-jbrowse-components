@@ -11,7 +11,7 @@ type TempType = {
 
 const adapterTypes: TempType = {
   BAM: "BAMAdapter",
-  VCF: "VcfAdapter", // check this
+  VCF: "VcfTabixAdapter",
 };
 
 const locationTypes: TempType = {
@@ -58,7 +58,7 @@ const getTracks = (inputFiles: JbrowseInputFile[]) =>
     },
   }));
 
-const JbrowseDynamic = ({
+const JbrowseDynamicLinear = ({
   selectedFiles = [],
   options,
 }: {
@@ -87,4 +87,4 @@ const JbrowseDynamic = ({
   return <JBrowseLinearGenomeView viewState={viewState} />;
 };
 
-export default JbrowseDynamic;
+export default JbrowseDynamicLinear;

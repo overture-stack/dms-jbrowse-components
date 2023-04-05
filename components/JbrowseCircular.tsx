@@ -23,6 +23,7 @@ import {
   createViewState,
   JBrowseCircularGenomeView,
 } from "@jbrowse/react-circular-genome-view";
+import defaultSession from "../jbrowse/circular/defaultSession";
 
 type ViewModel = ReturnType<typeof createViewState>;
 
@@ -39,7 +40,7 @@ export default function CustomJbrowse({
     const state = createViewState({
       assembly,
       tracks: [],
-      // defaultSession
+      defaultSession,
       ...(options || {}),
     });
     setViewState(state);

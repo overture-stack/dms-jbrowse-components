@@ -37,9 +37,14 @@ export const pageLinks = [
     description: "Linear & circular genome view",
   },
   {
-    url: "/dynamic",
-    text: "Dynamic",
-    description: "Dynamic file selection",
+    url: "/dynamic-linear",
+    text: "Dynamic linear",
+    description: "Linear genome view with dynamic file selection",
+  },
+  {
+    url: "/dynamic-circular",
+    text: "Dynamic circular",
+    description: "Circular genome view with dynamic file selection",
   },
 ];
 

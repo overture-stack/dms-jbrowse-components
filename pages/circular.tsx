@@ -22,7 +22,7 @@ import JbrowseCircular from "../components/JbrowseCircular";
 export default function CircularPage() {
   return (
     <>
-      <h1>Linear Genome View</h1>
+      <h1>Circular Genome View</h1>
       <JbrowseCircular />
     </>
   );

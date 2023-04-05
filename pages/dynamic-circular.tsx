@@ -17,7 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import JbrowseDynamic, { JbrowseInputFile } from "@/components/JbrowseDynamic";
+import JbrowseDynamicCircular, {
+  JbrowseInputFile,
+} from "@/components/JbrowseDynamicCircular";
 import { find } from "lodash";
 import { useState } from "react";
 
@@ -39,7 +41,7 @@ const dummyFileOptions: JbrowseInputFile[] = dummyFiles.map((file) => ({
   indexURI: dummyFileRoot + file + ".tbi",
 }));
 
-const DynamicPage = () => {
+const DynamicCircularPage = () => {
   const [checkedState, setCheckedState] = useState<{
     [x: string]: boolean;
   }>({});
@@ -75,9 +77,9 @@ const DynamicPage = () => {
       ))}
       <br />
       <br />
-      <JbrowseDynamic selectedFiles={selectedFiles} />
+      <JbrowseDynamicCircular selectedFiles={selectedFiles} />
     </div>
   );
 };
 
-export default DynamicPage;
+export default DynamicCircularPage;
