@@ -37,6 +37,21 @@ const defaultSession = {
     ],
     tracks: [
       {
+        id: "KnIV9-B7F",
+        type: "ReferenceSequenceTrack",
+        configuration: "GRCh38-ReferenceSequenceTrack",
+        minimized: false,
+        displays: [
+          {
+            id: "YzrpwrbY80",
+            type: "LinearReferenceSequenceDisplay",
+            height: 100,
+            configuration:
+              "GRCh38-ReferenceSequenceTrack-LinearReferenceSequenceDisplay",
+          },
+        ],
+      },
+      {
         id: "Cbnwl72EX",
         type: "VariantTrack",
         configuration:

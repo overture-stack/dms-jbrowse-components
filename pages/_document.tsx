@@ -37,9 +37,9 @@ export const pageLinks = [
     description: "Linear & circular genome view",
   },
   {
-    url: "/config",
-    text: "Config",
-    description: "Config created with CLI",
+    url: "/dynamic",
+    text: "Dynamic",
+    description: "Dynamic file selection",
   },
 ];
 

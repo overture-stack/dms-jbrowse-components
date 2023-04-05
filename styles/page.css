@@ -52,13 +52,13 @@ body {
   margin-right: 20px;
 }
 .wrapper {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 50px auto;
 }
 h2 {
   margin: 0 10px 10px 0;
 }
-@media (min-width: 800px) {
+@media (min-width: 100px) {
   .nav {
     width: 200px;
     position: fixed;
