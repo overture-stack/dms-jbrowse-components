@@ -17,36 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {
-  createViewState,
-  JBrowseLinearGenomeView,
-} from "@jbrowse/react-linear-genome-view";
-import { useEffect, useState } from "react";
-import dynamicOptions from "../jbrowse/linear/dynamic";
+import JbrowseDynamic, { JbrowseInputFile } from "@/components/JbrowseDynamic";
+import { find } from "lodash";
+import { useState } from "react";
 
-type ViewModel = ReturnType<typeof createViewState>;
-
-type TempType = {
-  [k: string]: string;
-};
-
-const adapterTypes: TempType = {
-  BAM: "BAMAdapter",
-  VCF: "VcfAdapter", // check this
-};
-
-const locationTypes: TempType = {
-  BAM: "bamLocation",
-  VCF: "vcfLocation",
-};
-
-const trackTypes: TempType = {
-  BAM: "FeatureTrack", // feature vs alignment?
-  VCF: "VariantTrack",
-};
-
-const dummyFileRoot = "http://localhost:3000/data/testing/";
-const dummyFiles = [
+const dummyFileRoot: string = "http://localhost:3000/data/testing/";
+const dummyFiles: string[] = [
   "0a6be23a-d5a0-4e95-ada2-a61b2b5d9485.consensus.20160830.somatic.snv_mnv.vcf.gz",
   "0a9c9db0-c623-11e3-bf01-24c6515278c0.consensus.20160830.somatic.snv_mnv.vcf.gz",
   "0ab4d782-9a50-48b9-96e4-6ce42b2ea034.consensus.20160830.somatic.snv_mnv.vcf.gz",
@@ -54,9 +30,8 @@ const dummyFiles = [
   "00b9d0e6-69dc-4345-bffd-ce32880c8eef.consensus.20160830.somatic.snv_mnv.vcf.gz",
   "0b29c893-03bf-4131-b192-c14a2788d411.consensus.20160830.somatic.snv_mnv.vcf.gz",
 ];
-const dummyAssembly = "hg38";
 
-const inputFiles = dummyFiles.map((file) => ({
+const dummyFileOptions: JbrowseInputFile[] = dummyFiles.map((file) => ({
   fileId: file.split(".")[0],
   fileName: file,
   fileType: "VCF",
@@ -64,56 +39,46 @@ const inputFiles = dummyFiles.map((file) => ({
   indexURI: dummyFileRoot + file + ".tbi",
 }));
 
-const getTracks = inputFiles.map((input) => ({
-  type: trackTypes[input.fileType],
-  trackId: input.fileId,
-  name: input.fileName,
-  assemblyNames: [dummyAssembly], // should be a constant
-  category: [trackTypes[input.fileType]], // arbitrary & optional
-  adapter: {
-    type: adapterTypes[input.fileType],
-    [locationTypes[input.fileType]]: {
-      uri: input.fileURI,
-      locationType: "UriLocation",
-    },
-    index: {
-      location: {
-        uri: input.indexURI,
-        locationType: "UriLocation",
-      },
-    },
-  },
-}));
-
-export default function CustomJbrowse({
-  selectedFiles = [],
-  options,
-}: {
-  selectedFiles?: any[];
-  options?: ViewModel;
-}) {
-  const [viewState, setViewState] = useState<ViewModel>();
-
-  useEffect(() => {
-    const state = createViewState({
-      ...dynamicOptions,
-      tracks: [...dynamicOptions.tracks, ...getTracks],
-      ...options,
-    });
-    setViewState(state);
-    getTracks.forEach((track) => {
-      state?.session.view.showTrack(track.trackId);
-    });
-  }, []);
-
-  if (!viewState) {
-    return null;
-  }
+const DynamicJbrowsePage = () => {
+  const [checkedState, setCheckedState] = useState<{
+    [x: string]: boolean;
+  }>({});
+  const handleOnChange = (fileId: string) => {
+    const nextCheckedState = {
+      ...checkedState,
+      [fileId]:
+        checkedState[fileId] === undefined ? true : !checkedState[fileId],
+    };
+    setCheckedState(nextCheckedState);
+  };
+  const selectedFiles = Object.entries(checkedState)
+    .filter(([file, isChecked]) => isChecked)
+    .map(([file]) => find(dummyFileOptions, { fileId: file }));
 
   return (
     <div>
       <h1>Dynamic file selection</h1>
-      <JBrowseLinearGenomeView viewState={viewState} />
+      {dummyFileOptions.map((file) => (
+        <div key={file.fileId}>
+          <label key={file.fileId}>
+            <input
+              checked={!!checkedState[file.fileId]}
+              id={`checkbox-${file.fileId}`}
+              name={file.fileId}
+              onChange={() => handleOnChange(file.fileId)}
+              type="checkbox"
+              value={file.fileId}
+            />
+            {file.fileName}
+          </label>
+          <br />
+        </div>
+      ))}
+      <br />
+      <br />
+      <JbrowseDynamic selectedFiles={selectedFiles} />
     </div>
   );
-}
+};
+
+export default DynamicJbrowsePage;

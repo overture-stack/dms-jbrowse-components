@@ -21,7 +21,6 @@
 
 * {
   font-family: arial;
-  color: #263238;
   box-sizing: border-box;
 }
 body {
@@ -79,5 +78,14 @@ h2 {
   }
   .main {
     margin-left: 200px;
+    padding: 0 20px;
   }
+}
+
+.nav a,
+label,
+h1,
+h2,
+li {
+  color: #263238;
 }
