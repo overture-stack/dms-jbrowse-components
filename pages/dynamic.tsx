@@ -58,18 +58,18 @@ const DynamicPage = () => {
   return (
     <div>
       <h1>Dynamic file selection</h1>
-      {dummyFileOptions.map((file) => (
-        <div key={file.fileId}>
-          <label key={file.fileId}>
+      {dummyFileOptions.map(({ fileId, fileName }) => (
+        <div key={fileId}>
+          <label key={fileId}>
             <input
-              checked={!!checkedState[file.fileId]}
-              id={`checkbox-${file.fileId}`}
-              name={file.fileId}
-              onChange={() => handleOnChange(file.fileId)}
+              checked={!!checkedState[fileId]}
+              id={`checkbox-${fileId}`}
+              name={fileId}
+              onChange={() => handleOnChange(fileId)}
               type="checkbox"
-              value={file.fileId}
+              value={fileId}
             />
-            {file.fileName}
+            {fileName}
           </label>
         </div>
       ))}
