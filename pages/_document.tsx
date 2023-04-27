@@ -22,28 +22,13 @@ import Link from "next/link";
 
 export const pageLinks = [
   {
-    url: "/circular",
-    text: "Circular",
-    description: "Circular genome view",
-  },
-  {
     url: "/linear",
     text: "Linear",
-    description: "Linear genome view",
-  },
-  {
-    url: "/linear-circular",
-    text: "Linear & Circular",
-    description: "Linear & circular genome view",
-  },
-  {
-    url: "/dynamic-linear",
-    text: "Dynamic linear",
     description: "Linear genome view with dynamic file selection",
   },
   {
-    url: "/dynamic-circular",
-    text: "Dynamic circular",
+    url: "/circular",
+    text: "Circular",
     description: "Circular genome view with dynamic file selection",
   },
 ];

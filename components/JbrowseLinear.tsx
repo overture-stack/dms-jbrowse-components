@@ -20,40 +20,47 @@
 import {
   createViewState,
   JBrowseLinearGenomeView,
+  ViewModel,
 } from "@jbrowse/react-linear-genome-view";
 import { useEffect, useState } from "react";
-import assembly from "../jbrowse/assembly";
-import linearTracks from "../jbrowse/linear/tracks";
-import linearDefaultSession from "../jbrowse/linear/defaultSession";
-import ModifyMainMenu from "./plugins/ModifyMainMenu";
-import { LinearViewModel } from "./types";
+import { defaultLinearOptions } from "@/jbrowse/linear/dynamic";
+import { getTracks } from "./common";
+import { assembly } from "@/jbrowse/assembly";
+import { ModifyMainMenu } from "./plugins/ModifyMainMenu";
+import { JbrowseFileInput } from "./types";
 
-export default function CustomJbrowse({
+export const JbrowseLinear = ({
   options,
+  selectedFiles = [],
 }: {
-  options?: LinearViewModel;
-}) {
-  const [viewState, setViewState] = useState<LinearViewModel>();
+  options?: ViewModel;
+  selectedFiles: JbrowseFileInput[];
+}) => {
+  const [viewState, setViewState] = useState<ViewModel>();
 
   useEffect(() => {
+    const selectedFileTracks = selectedFiles.length
+      ? getTracks(selectedFiles)
+      : [];
     const state = createViewState({
+      ...defaultLinearOptions,
       assembly,
-      defaultSession: linearDefaultSession,
       disableAddTracks: true,
       plugins: [ModifyMainMenu],
-      tracks: linearTracks,
+      tracks: selectedFileTracks,
       ...(options || {}),
     });
+
     setViewState(state);
-  }, []);
+
+    selectedFileTracks.forEach((track) => {
+      state?.session.view.showTrack(track.trackId);
+    });
+  }, [selectedFiles]);
 
   if (!viewState) {
     return null;
   }
 
-  return (
-    <div>
-      <JBrowseLinearGenomeView viewState={viewState} />
-    </div>
-  );
-}
+  return <JBrowseLinearGenomeView viewState={viewState} />;
+};

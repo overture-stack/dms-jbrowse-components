@@ -36,3 +36,7 @@ export type JbrowseFileInput = {
   fileURI: string;
   indexURI: string;
 };
+
+export type CheckedState = {
+  [k: string]: boolean;
+};

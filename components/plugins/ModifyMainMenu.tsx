@@ -36,14 +36,13 @@ const customMenuOptions = [
   },
 ];
 
-export default class ModifyMainMenu extends Plugin {
+export class ModifyMainMenu extends Plugin {
   name = "ModifyMainMenu";
   version = version;
 
   install(pluginManager: any) {
     pluginManager.addToExtensionPoint(
       "Core-extendPluggableElement",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (pluggableElement: any) => {
         if (pluggableElement.name === "LinearGenomeView") {
           const { stateModel } = pluggableElement;

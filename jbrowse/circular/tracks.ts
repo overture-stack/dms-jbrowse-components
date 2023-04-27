@@ -18,7 +18,7 @@
  */
 
 // this VCF has translocations for circular view
-const circularTracks = [
+export const circularTracks = [
   {
     type: "VariantTrack",
     trackId: "pacbio_sv_vcf",
@@ -40,5 +40,3 @@ const circularTracks = [
     },
   },
 ];
-
-export default circularTracks;

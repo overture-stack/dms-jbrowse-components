@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const options = {
+export const defaultCircularOptions = {
   configuration: {},
   connections: [],
   defaultSession: {
@@ -29,5 +29,3 @@ const options = {
   },
   tracks: [],
 };
-
-export default options;

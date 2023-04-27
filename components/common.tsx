@@ -17,7 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { JbrowseFileInput, JbrowseFileInputInfo } from "./types";
+import { useState } from "react";
+import { CheckedState, JbrowseFileInput, JbrowseFileInputInfo } from "./types";
 
 export const adapterTypes: JbrowseFileInputInfo = {
   BAM: "BAMAdapter",
@@ -30,7 +31,7 @@ export const locationTypes: JbrowseFileInputInfo = {
 };
 
 export const trackTypes: JbrowseFileInputInfo = {
-  BAM: "FeatureTrack", // feature vs alignment?
+  BAM: "AlignmentTrack",
   VCF: "VariantTrack",
 };
 
@@ -41,8 +42,8 @@ export const getTracks = (inputFiles: JbrowseFileInput[]) =>
     type: trackTypes[input.fileType],
     trackId: input.fileId,
     name: input.fileName,
-    assemblyNames: [humanGenomeAssembly], // should be a constant
-    category: [trackTypes[input.fileType]], // arbitrary & optional
+    assemblyNames: [humanGenomeAssembly],
+    category: [trackTypes[input.fileType]],
     adapter: {
       type: adapterTypes[input.fileType],
       [locationTypes[input.fileType]]: {
@@ -74,3 +75,55 @@ export const tempFileOptions: JbrowseFileInput[] = tempFiles.map((file) => ({
   fileURI: tempFileRoot + file,
   indexURI: tempFileRoot + file + ".tbi",
 }));
+
+export const useFileSelection = () => {
+  const [checkedState, setCheckedState] = useState<CheckedState>({});
+
+  const handleOnChange = (fileId: string) => {
+    const nextCheckedState = {
+      ...checkedState,
+      [fileId]:
+        checkedState[fileId] === undefined ? true : !checkedState[fileId],
+    };
+    setCheckedState(nextCheckedState);
+  };
+
+  const selectedFiles = Object.entries(checkedState)
+    .filter(([fileId, isChecked]) => isChecked)
+    .map(
+      ([fileId]) => tempFileOptions.filter((file) => file.fileId === fileId)[0]
+    )
+    .filter(Boolean);
+
+  return { checkedState, handleOnChange, selectedFiles };
+};
+
+export const FileSelection = ({
+  checkedState,
+  filesList,
+  handleOnChange,
+}: {
+  checkedState: CheckedState;
+  filesList: JbrowseFileInput[];
+  handleOnChange: (val: string) => void;
+}) => {
+  return (
+    <div style={{ marginBottom: 20 }}>
+      {filesList.map(({ fileId, fileName }) => (
+        <div key={fileId}>
+          <label key={fileId}>
+            <input
+              checked={!!checkedState[fileId]}
+              id={`checkbox-${fileId}`}
+              name={fileId}
+              onChange={() => handleOnChange(fileId)}
+              type="checkbox"
+              value={fileId}
+            />
+            {fileName}
+          </label>
+        </div>
+      ))}
+    </div>
+  );
+};

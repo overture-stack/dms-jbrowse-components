@@ -17,39 +17,51 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { useEffect, useState } from "react";
-import assembly from "../jbrowse/assembly";
 import {
   createViewState,
   JBrowseCircularGenomeView,
 } from "@jbrowse/react-circular-genome-view";
-import circularTracks from "../jbrowse/circular/tracks";
-import circularDefaultSession from "@/jbrowse/circular/defaultSession";
-import { CircularViewModel } from "./types";
+import { useEffect, useState } from "react";
+import { assembly } from "@/jbrowse/assembly";
+import { CircularViewModel, JbrowseFileInput } from "./types";
+import { getTracks } from "./common";
+import { circularTracks } from "@/jbrowse/circular/tracks";
 
-export default function CustomJbrowse() {
+export const JbrowseCircular = ({
+  options,
+  selectedFiles = [],
+}: {
+  options?: CircularViewModel;
+  selectedFiles?: JbrowseFileInput[];
+}) => {
   const [viewState, setViewState] = useState<CircularViewModel>();
 
   useEffect(() => {
+    const selectedFileTracks = getTracks(selectedFiles);
     const state = createViewState({
       assembly,
-      tracks: circularTracks,
-      defaultSession: circularDefaultSession,
+      defaultSession: {
+        name: "My session",
+        view: {
+          id: "circularView",
+          type: "CircularView",
+        },
+      },
+      tracks: [...circularTracks, ...selectedFileTracks],
+      ...(options || {}),
     });
     setViewState(state);
-
     circularTracks.forEach((track) => {
       state?.session.view.showTrack(track.trackId);
     });
-  }, []);
+    selectedFileTracks.forEach((track) => {
+      state?.session.view.showTrack(track.trackId);
+    });
+  }, [selectedFiles]);
 
   if (!viewState) {
     return null;
   }
 
-  return (
-    <div>
-      <JBrowseCircularGenomeView viewState={viewState} />
-    </div>
-  );
-}
+  return <JBrowseCircularGenomeView viewState={viewState} />;
+};

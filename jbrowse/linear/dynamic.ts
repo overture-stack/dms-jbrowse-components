@@ -19,7 +19,7 @@
 
 // options for JbrowseDynamicLinear
 
-const options = {
+export const defaultLinearOptions = {
   configuration: {},
   connections: [],
   defaultSession: {
@@ -58,7 +58,4 @@ const options = {
       ],
     },
   },
-  tracks: [],
 };
-
-export default options;

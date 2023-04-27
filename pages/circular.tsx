@@ -17,13 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import JbrowseCircular from "../components/JbrowseCircular";
+import { JbrowseCircular } from "@/components/JbrowseCircular";
+import {
+  FileSelection,
+  tempFileOptions,
+  useFileSelection,
+} from "@/components/common";
 
-export default function CircularPage() {
+const CircularPage = () => {
+  const { checkedState, handleOnChange, selectedFiles } = useFileSelection();
   return (
-    <>
-      <h1>Circular Genome View</h1>
-      <JbrowseCircular />
-    </>
+    <div>
+      <h1>Dynamic file selection</h1>
+      <FileSelection
+        filesList={tempFileOptions}
+        handleOnChange={handleOnChange}
+        checkedState={checkedState}
+      />
+      <JbrowseCircular selectedFiles={selectedFiles} />
+    </div>
   );
-}
+};
+
+export default CircularPage;

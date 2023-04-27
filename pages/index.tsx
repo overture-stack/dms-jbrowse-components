@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { redirect } from "next/navigation";
+import LinearPage from "./linear";
 
 export default function Home() {
-  redirect("/dynamic-linear");
+  return <LinearPage />;
 }

@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const assembly = {
+export const assembly = {
   name: "hg38",
   aliases: ["GRCh38"],
   sequence: {
@@ -49,5 +49,3 @@ const assembly = {
     },
   },
 };
-
-export default assembly;

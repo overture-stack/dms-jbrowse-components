@@ -17,13 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import JbrowseLinear from "../components/JbrowseLinear";
+import { JbrowseLinear } from "@/components/JbrowseLinear";
+import {
+  FileSelection,
+  tempFileOptions,
+  useFileSelection,
+} from "@/components/common";
 
-export default function LinearPage() {
+const LinearPage = () => {
+  const { checkedState, handleOnChange, selectedFiles } = useFileSelection();
   return (
-    <>
-      <h1>Linear Genome View</h1>
-      <JbrowseLinear />
-    </>
+    <div>
+      <h1>Dynamic file selection</h1>
+      <FileSelection
+        filesList={tempFileOptions}
+        handleOnChange={handleOnChange}
+        checkedState={checkedState}
+      />
+      <JbrowseLinear selectedFiles={selectedFiles} />
+    </div>
   );
-}
+};
+
+export default LinearPage;
