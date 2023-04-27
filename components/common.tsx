@@ -82,8 +82,7 @@ export const useFileSelection = () => {
   const handleOnChange = (fileId: string) => {
     const nextCheckedState = {
       ...checkedState,
-      [fileId]:
-        checkedState[fileId] === undefined ? true : !checkedState[fileId],
+      [fileId]: checkedState[fileId] === undefined || !checkedState[fileId],
     };
     setCheckedState(nextCheckedState);
   };
