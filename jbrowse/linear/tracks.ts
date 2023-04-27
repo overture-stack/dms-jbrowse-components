@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const tracks = [
+const linearTracks = [
   {
     type: "VariantTrack",
     trackId:
@@ -39,4 +39,4 @@ const tracks = [
   },
 ];
 
-export default tracks;
+export default linearTracks;

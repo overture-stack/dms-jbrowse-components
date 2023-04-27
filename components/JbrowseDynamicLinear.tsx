@@ -20,78 +20,32 @@
 import {
   createViewState,
   JBrowseLinearGenomeView,
+  ViewModel,
 } from "@jbrowse/react-linear-genome-view";
 import { useEffect, useState } from "react";
 import dynamicOptions from "../jbrowse/linear/dynamic";
-
-type TempType = {
-  [k: string]: string;
-};
-
-const adapterTypes: TempType = {
-  BAM: "BAMAdapter",
-  VCF: "VcfTabixAdapter",
-};
-
-const locationTypes: TempType = {
-  BAM: "bamLocation",
-  VCF: "vcfGzLocation",
-};
-
-const trackTypes: TempType = {
-  BAM: "FeatureTrack", // feature vs alignment?
-  VCF: "VariantTrack",
-};
-
-type ViewModel = ReturnType<typeof createViewState>;
-
-export type JbrowseInputFile = {
-  fileId: string;
-  fileName: string;
-  fileType: string;
-  fileURI: string;
-  indexURI: string;
-};
-
-const dummyAssembly = "hg38";
-
-const getTracks = (inputFiles: JbrowseInputFile[]) =>
-  inputFiles.map((input) => ({
-    type: trackTypes[input.fileType],
-    trackId: input.fileId,
-    name: input.fileName,
-    assemblyNames: [dummyAssembly], // should be a constant
-    category: [trackTypes[input.fileType]], // arbitrary & optional
-    adapter: {
-      type: adapterTypes[input.fileType],
-      [locationTypes[input.fileType]]: {
-        uri: input.fileURI,
-        locationType: "UriLocation",
-      },
-      index: {
-        location: {
-          uri: input.indexURI,
-          locationType: "UriLocation",
-        },
-      },
-    },
-  }));
+import { getTracks } from "./common";
+import assembly from "../jbrowse/assembly";
+import ModifyMainMenu from "./plugins/ModifyMainMenu";
 
 const JbrowseDynamicLinear = ({
-  selectedFiles = [],
   options,
+  selectedFiles = [],
 }: {
-  selectedFiles?: any[];
   options?: ViewModel;
+  selectedFiles?: any[];
 }) => {
   const [viewState, setViewState] = useState<ViewModel>();
 
   useEffect(() => {
     const selectedFileTracks = getTracks(selectedFiles);
     const state = createViewState({
+      assembly,
       ...dynamicOptions,
+      disableAddTracks: true,
+      plugins: [ModifyMainMenu],
       tracks: [...dynamicOptions.tracks, ...selectedFileTracks],
-      ...options,
+      ...(options || {}),
     });
     setViewState(state);
     selectedFileTracks.forEach((track) => {

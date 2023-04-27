@@ -17,39 +17,22 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { useEffect, useState } from "react";
-import assembly from "../jbrowse/assembly";
-import {
-  createViewState,
-  JBrowseCircularGenomeView,
-} from "@jbrowse/react-circular-genome-view";
-import circularTracks from "../jbrowse/circular/tracks";
-import circularDefaultSession from "@/jbrowse/circular/defaultSession";
-import { CircularViewModel } from "./types";
+import { createViewState as createCircularViewState } from "@jbrowse/react-circular-genome-view";
+import { createViewState as createLinearViewState } from "@jbrowse/react-linear-genome-view";
 
-export default function CustomJbrowse() {
-  const [viewState, setViewState] = useState<CircularViewModel>();
+export type JbrowseFileInputFormats = "BAM" | "VCF";
 
-  useEffect(() => {
-    const state = createViewState({
-      assembly,
-      tracks: circularTracks,
-      defaultSession: circularDefaultSession,
-    });
-    setViewState(state);
+export type JbrowseFileInputInfo = {
+  [k in JbrowseFileInputFormats]: string;
+};
 
-    circularTracks.forEach((track) => {
-      state?.session.view.showTrack(track.trackId);
-    });
-  }, []);
+export type CircularViewModel = ReturnType<typeof createCircularViewState>;
+export type LinearViewModel = ReturnType<typeof createLinearViewState>;
 
-  if (!viewState) {
-    return null;
-  }
-
-  return (
-    <div>
-      <JBrowseCircularGenomeView viewState={viewState} />
-    </div>
-  );
-}
+export type JbrowseFileInput = {
+  fileId: string;
+  fileName: string;
+  fileType: JbrowseFileInputFormats;
+  fileURI: string;
+  indexURI: string;
+};

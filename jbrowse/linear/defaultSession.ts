@@ -17,7 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const defaultSession = {
+// default session for JbrowseLinear
+
+const linearDefaultSession = {
   name: "Default session - Linear",
   margin: 0,
   view: {
@@ -79,4 +81,4 @@ const defaultSession = {
   },
 };
 
-export default defaultSession;
+export default linearDefaultSession;

@@ -23,29 +23,25 @@ import {
 } from "@jbrowse/react-linear-genome-view";
 import { useEffect, useState } from "react";
 import assembly from "../jbrowse/assembly";
-import tracks from "../jbrowse/linear/tracks";
-import defaultSession from "../jbrowse/linear/defaultSession";
-
+import linearTracks from "../jbrowse/linear/tracks";
+import linearDefaultSession from "../jbrowse/linear/defaultSession";
 import ModifyMainMenu from "./plugins/ModifyMainMenu";
-
-type ViewModel = ReturnType<typeof createViewState>;
+import { LinearViewModel } from "./types";
 
 export default function CustomJbrowse({
-  selectedFiles = [],
   options,
 }: {
-  selectedFiles?: any[];
-  options?: ViewModel;
+  options?: LinearViewModel;
 }) {
-  const [viewState, setViewState] = useState<ViewModel>();
+  const [viewState, setViewState] = useState<LinearViewModel>();
 
   useEffect(() => {
     const state = createViewState({
       assembly,
-      tracks,
-      plugins: [ModifyMainMenu],
-      defaultSession,
+      defaultSession: linearDefaultSession,
       disableAddTracks: true,
+      plugins: [ModifyMainMenu],
+      tracks: linearTracks,
       ...(options || {}),
     });
     setViewState(state);

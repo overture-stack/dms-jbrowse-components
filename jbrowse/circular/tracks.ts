@@ -17,39 +17,28 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { useEffect, useState } from "react";
-import assembly from "../jbrowse/assembly";
-import {
-  createViewState,
-  JBrowseCircularGenomeView,
-} from "@jbrowse/react-circular-genome-view";
-import circularTracks from "../jbrowse/circular/tracks";
-import circularDefaultSession from "@/jbrowse/circular/defaultSession";
-import { CircularViewModel } from "./types";
+// this VCF has translocations for circular view
+const circularTracks = [
+  {
+    type: "VariantTrack",
+    trackId: "pacbio_sv_vcf",
+    name: "HG002 Pacbio SV (VCF)",
+    assemblyNames: ["hg38"],
+    category: ["GIAB"],
+    adapter: {
+      type: "VcfTabixAdapter",
+      vcfGzLocation: {
+        uri: "http://localhost:3000/data/testing/translocations/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz",
+        locationType: "UriLocation",
+      },
+      index: {
+        location: {
+          uri: "http://localhost:3000/data/testing/translocations/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz.tbi",
+          locationType: "UriLocation",
+        },
+      },
+    },
+  },
+];
 
-export default function CustomJbrowse() {
-  const [viewState, setViewState] = useState<CircularViewModel>();
-
-  useEffect(() => {
-    const state = createViewState({
-      assembly,
-      tracks: circularTracks,
-      defaultSession: circularDefaultSession,
-    });
-    setViewState(state);
-
-    circularTracks.forEach((track) => {
-      state?.session.view.showTrack(track.trackId);
-    });
-  }, []);
-
-  if (!viewState) {
-    return null;
-  }
-
-  return (
-    <div>
-      <JBrowseCircularGenomeView viewState={viewState} />
-    </div>
-  );
-}
+export default circularTracks;

@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const defaultSession = {
+const circularDefaultSession = {
   name: "Default session - Circular",
   view: {
     id: "circularView",
@@ -40,4 +40,4 @@ const defaultSession = {
   },
 };
 
-export default defaultSession;
+export default circularDefaultSession;
