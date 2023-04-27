@@ -35,7 +35,7 @@ const adapterTypes: TempType = {
 
 const locationTypes: TempType = {
   BAM: "bamLocation",
-  VCF: "vcfLocation",
+  VCF: "vcfGzLocation",
 };
 
 const trackTypes: TempType = {
@@ -88,7 +88,6 @@ const JbrowseDynamicLinear = ({
 
   useEffect(() => {
     const selectedFileTracks = getTracks(selectedFiles);
-    console.log("selectedFileTracks", selectedFileTracks);
     const state = createViewState({
       ...dynamicOptions,
       tracks: [...dynamicOptions.tracks, ...selectedFileTracks],
