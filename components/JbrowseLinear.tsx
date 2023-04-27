@@ -26,6 +26,8 @@ import assembly from "../jbrowse/assembly";
 import tracks from "../jbrowse/linear/tracks";
 import defaultSession from "../jbrowse/linear/defaultSession";
 
+import ModifyMainMenu from "./plugins/ModifyMainMenu";
+
 type ViewModel = ReturnType<typeof createViewState>;
 
 export default function CustomJbrowse({
@@ -41,7 +43,9 @@ export default function CustomJbrowse({
     const state = createViewState({
       assembly,
       tracks,
+      plugins: [ModifyMainMenu],
       defaultSession,
+      disableAddTracks: true,
       ...(options || {}),
     });
     setViewState(state);
