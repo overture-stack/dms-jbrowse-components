@@ -28,12 +28,12 @@ const circularTracks = [
     adapter: {
       type: "VcfTabixAdapter",
       vcfGzLocation: {
-        uri: "http://localhost:3000/data/testing/translocations/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz",
+        uri: "http://localhost:3000/data/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz",
         locationType: "UriLocation",
       },
       index: {
         location: {
-          uri: "http://localhost:3000/data/testing/translocations/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz.tbi",
+          uri: "http://localhost:3000/data/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz.tbi",
           locationType: "UriLocation",
         },
       },

@@ -58,16 +58,13 @@ export const getTracks = (inputFiles: JbrowseFileInput[]) =>
     },
   }));
 
-export const tempFileRoot: string = "http://localhost:3000/data/testing/";
+export const tempFileRoot: string = "http://localhost:3000/data/";
 
 // VCFs without translocations
 const tempFiles: string[] = [
   "0a6be23a-d5a0-4e95-ada2-a61b2b5d9485.consensus.20160830.somatic.snv_mnv.vcf.gz",
   "0a9c9db0-c623-11e3-bf01-24c6515278c0.consensus.20160830.somatic.snv_mnv.vcf.gz",
   "0ab4d782-9a50-48b9-96e4-6ce42b2ea034.consensus.20160830.somatic.snv_mnv.vcf.gz",
-  "0b6cd7df-6970-4d60-b7b5-85002a7d8781.consensus.20160830.somatic.snv_mnv.vcf.gz",
-  "00b9d0e6-69dc-4345-bffd-ce32880c8eef.consensus.20160830.somatic.snv_mnv.vcf.gz",
-  "0b29c893-03bf-4131-b192-c14a2788d411.consensus.20160830.somatic.snv_mnv.vcf.gz",
 ];
 
 export const tempFileOptions: JbrowseFileInput[] = tempFiles.map((file) => ({
