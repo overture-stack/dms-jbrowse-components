@@ -31,7 +31,7 @@ export const pageLinks = [
     text: "Circular",
     description: "Circular genome view with dynamic file selection",
   },
-];
+] as const;
 
 export default function Document() {
   return (
