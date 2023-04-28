@@ -26,6 +26,7 @@ import { assembly } from "@/jbrowse/assembly";
 import { CircularViewModel, JbrowseFileInput } from "./types";
 import { getTracks } from "./common";
 import { circularTracks } from "@/jbrowse/circular/tracks";
+import { defaultCircularOptions } from "@/jbrowse/circular/dynamic";
 
 export const JbrowseCircular = ({
   options,
@@ -39,14 +40,8 @@ export const JbrowseCircular = ({
   useEffect(() => {
     const selectedFileTracks = getTracks(selectedFiles);
     const state = createViewState({
+      ...defaultCircularOptions,
       assembly,
-      defaultSession: {
-        name: "My session",
-        view: {
-          id: "circularView",
-          type: "CircularView",
-        },
-      },
       tracks: [...circularTracks, ...selectedFileTracks],
       ...(options || {}),
     });

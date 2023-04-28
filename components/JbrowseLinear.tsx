@@ -20,23 +20,22 @@
 import {
   createViewState,
   JBrowseLinearGenomeView,
-  ViewModel,
 } from "@jbrowse/react-linear-genome-view";
 import { useEffect, useState } from "react";
 import { defaultLinearOptions } from "@/jbrowse/linear/dynamic";
 import { getTracks } from "./common";
 import { assembly } from "@/jbrowse/assembly";
 import { ModifyMainMenu } from "./plugins/ModifyMainMenu";
-import { JbrowseFileInput } from "./types";
+import { JbrowseFileInput, LinearViewModel } from "./types";
 
 export const JbrowseLinear = ({
   options,
   selectedFiles = [],
 }: {
-  options?: ViewModel;
+  options?: LinearViewModel;
   selectedFiles: JbrowseFileInput[];
 }) => {
-  const [viewState, setViewState] = useState<ViewModel>();
+  const [viewState, setViewState] = useState<LinearViewModel>();
 
   useEffect(() => {
     const selectedFileTracks = selectedFiles.length
@@ -45,7 +44,6 @@ export const JbrowseLinear = ({
     const state = createViewState({
       ...defaultLinearOptions,
       assembly,
-      disableAddTracks: true,
       plugins: [ModifyMainMenu],
       tracks: selectedFileTracks,
       ...(options || {}),

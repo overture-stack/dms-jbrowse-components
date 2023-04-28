@@ -58,4 +58,5 @@ export const defaultLinearOptions = {
       ],
     },
   },
+  disableAddTracks: true,
 };
