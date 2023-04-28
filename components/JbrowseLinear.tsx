@@ -37,6 +37,12 @@ export const JbrowseLinear = ({
 }) => {
   const [viewState, setViewState] = useState<LinearViewModel>();
 
+  /*
+   * Create tracks for Jbrowse based on the provided selected files,
+   * create the view state for Jbrowse using those tracks,
+   * and then enable/show the tracks.
+   * This updates when selected files are updated.
+   */
   useEffect(() => {
     const selectedFileTracks = selectedFiles.length
       ? getTracks(selectedFiles)

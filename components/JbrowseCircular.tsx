@@ -37,6 +37,12 @@ export const JbrowseCircular = ({
 }) => {
   const [viewState, setViewState] = useState<CircularViewModel>();
 
+  /*
+   * Create tracks for Jbrowse based on the provided selected files,
+   * create the view state for Jbrowse using those tracks,
+   * and then enable/show the tracks.
+   * This updates when selected files are updated.
+   */
   useEffect(() => {
     const selectedFileTracks = getTracks(selectedFiles);
     const state = createViewState({
@@ -45,7 +51,9 @@ export const JbrowseCircular = ({
       tracks: [...circularTracks, ...selectedFileTracks],
       ...(options || {}),
     });
+
     setViewState(state);
+
     circularTracks.forEach((track) => {
       state?.session.view.showTrack(track.trackId);
     });
