@@ -17,46 +17,46 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Html, Head, Main, NextScript } from "next/document";
-import Link from "next/link";
+// options for JbrowseDynamicLinear
 
-export const pageLinks = [
-  {
-    url: "/linear",
-    text: "Linear",
-    description: "Linear genome view with dynamic file selection",
+export const defaultLinearOptions = {
+  configuration: {},
+  connections: [],
+  defaultSession: {
+    name: "New Session",
+    view: {
+      id: "linearGenomeView",
+      minimized: false,
+      type: "LinearGenomeView",
+      offsetPx: 191980240,
+      bpPerPx: 0.1554251851851852,
+      displayedRegions: [
+        {
+          refName: "10",
+          start: 0,
+          end: 133797422,
+          reversed: false,
+          assemblyName: "GRCh38",
+        },
+      ],
+      tracks: [
+        {
+          id: "KnIV9-B7F",
+          type: "ReferenceSequenceTrack",
+          configuration: "GRCh38-ReferenceSequenceTrack",
+          minimized: false,
+          displays: [
+            {
+              id: "YzrpwrbY80",
+              type: "LinearReferenceSequenceDisplay",
+              height: 100,
+              configuration:
+                "GRCh38-ReferenceSequenceTrack-LinearReferenceSequenceDisplay",
+            },
+          ],
+        },
+      ],
+    },
   },
-  {
-    url: "/circular",
-    text: "Circular",
-    description: "Circular genome view with dynamic file selection",
-  },
-] as const;
-
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <div className="nav">
-          <h2>
-            <Link href="/">Jbrowse Prototype</Link>
-          </h2>
-          <ul>
-            {pageLinks.map((link) => (
-              <li key={link.url}>
-                <Link href={link.url}>{link.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="main">
-          <div className="wrapper">
-            <Main />
-            <NextScript />
-          </div>
-        </div>
-      </body>
-    </Html>
-  );
-}
+  disableAddTracks: true,
+};

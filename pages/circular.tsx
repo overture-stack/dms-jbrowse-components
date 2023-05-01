@@ -17,46 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Html, Head, Main, NextScript } from "next/document";
-import Link from "next/link";
+import { JbrowseCircular } from "@/jbrowse/components/JbrowseCircular";
+import {
+  FileSelection,
+  tempFileOptions,
+  useFileSelection,
+} from "@/jbrowse/components/common";
 
-export const pageLinks = [
-  {
-    url: "/linear",
-    text: "Linear",
-    description: "Linear genome view with dynamic file selection",
-  },
-  {
-    url: "/circular",
-    text: "Circular",
-    description: "Circular genome view with dynamic file selection",
-  },
-] as const;
-
-export default function Document() {
+const CircularPage = () => {
+  const { checkedState, handleOnChange, selectedFiles } = useFileSelection();
   return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <div className="nav">
-          <h2>
-            <Link href="/">Jbrowse Prototype</Link>
-          </h2>
-          <ul>
-            {pageLinks.map((link) => (
-              <li key={link.url}>
-                <Link href={link.url}>{link.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="main">
-          <div className="wrapper">
-            <Main />
-            <NextScript />
-          </div>
-        </div>
-      </body>
-    </Html>
+    <div>
+      <h1>Dynamic file selection</h1>
+      <FileSelection
+        filesList={tempFileOptions}
+        handleOnChange={handleOnChange}
+        checkedState={checkedState}
+      />
+      <JbrowseCircular selectedFiles={selectedFiles} />
+    </div>
   );
-}
+};
+
+export default CircularPage;

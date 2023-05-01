@@ -17,46 +17,35 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Html, Head, Main, NextScript } from "next/document";
-import Link from "next/link";
-
-export const pageLinks = [
-  {
-    url: "/linear",
-    text: "Linear",
-    description: "Linear genome view with dynamic file selection",
+export const assembly = {
+  name: "hg38",
+  aliases: ["GRCh38"],
+  sequence: {
+    type: "ReferenceSequenceTrack",
+    trackId: "GRCh38-ReferenceSequenceTrack",
+    adapter: {
+      type: "BgzipFastaAdapter",
+      fastaLocation: {
+        uri: "http://localhost:3000/data/hg38.prefix.fa.gz",
+        locationType: "UriLocation",
+      },
+      faiLocation: {
+        uri: "http://localhost:3000/data/hg38.prefix.fa.gz.fai",
+        locationType: "UriLocation",
+      },
+      gziLocation: {
+        uri: "http://localhost:3000/data/hg38.prefix.fa.gz.gzi",
+        locationType: "UriLocation",
+      },
+    },
   },
-  {
-    url: "/circular",
-    text: "Circular",
-    description: "Circular genome view with dynamic file selection",
+  refNameAliases: {
+    adapter: {
+      type: "RefNameAliasAdapter",
+      location: {
+        uri: "http://localhost:3000/data/hg38_aliases.txt",
+        locationType: "UriLocation",
+      },
+    },
   },
-] as const;
-
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <div className="nav">
-          <h2>
-            <Link href="/">Jbrowse Prototype</Link>
-          </h2>
-          <ul>
-            {pageLinks.map((link) => (
-              <li key={link.url}>
-                <Link href={link.url}>{link.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="main">
-          <div className="wrapper">
-            <Main />
-            <NextScript />
-          </div>
-        </div>
-      </body>
-    </Html>
-  );
-}
+};

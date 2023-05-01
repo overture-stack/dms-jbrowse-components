@@ -17,46 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Html, Head, Main, NextScript } from "next/document";
-import Link from "next/link";
-
-export const pageLinks = [
+// this VCF has translocations for circular view
+export const circularTracks = [
   {
-    url: "/linear",
-    text: "Linear",
-    description: "Linear genome view with dynamic file selection",
+    type: "VariantTrack",
+    trackId: "pacbio_sv_vcf",
+    name: "HG002 Pacbio SV (VCF)",
+    assemblyNames: ["hg38"],
+    category: ["GIAB"],
+    adapter: {
+      type: "VcfTabixAdapter",
+      vcfGzLocation: {
+        uri: "http://localhost:3000/data/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz",
+        locationType: "UriLocation",
+      },
+      index: {
+        location: {
+          uri: "http://localhost:3000/data/hs37d5.HG002-SequelII-CCS.bnd-only.sv.vcf.gz.tbi",
+          locationType: "UriLocation",
+        },
+      },
+    },
   },
-  {
-    url: "/circular",
-    text: "Circular",
-    description: "Circular genome view with dynamic file selection",
-  },
-] as const;
-
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <div className="nav">
-          <h2>
-            <Link href="/">Jbrowse Prototype</Link>
-          </h2>
-          <ul>
-            {pageLinks.map((link) => (
-              <li key={link.url}>
-                <Link href={link.url}>{link.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="main">
-          <div className="wrapper">
-            <Main />
-            <NextScript />
-          </div>
-        </div>
-      </body>
-    </Html>
-  );
-}
+];

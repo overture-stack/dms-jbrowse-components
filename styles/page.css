@@ -17,46 +17,75 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Html, Head, Main, NextScript } from "next/document";
-import Link from "next/link";
+/* CSS for basic page structure, not for Jbrowse */
 
-export const pageLinks = [
-  {
-    url: "/linear",
-    text: "Linear",
-    description: "Linear genome view with dynamic file selection",
-  },
-  {
-    url: "/circular",
-    text: "Circular",
-    description: "Circular genome view with dynamic file selection",
-  },
-] as const;
+* {
+  font-family: arial;
+  box-sizing: border-box;
+}
+body {
+  background: #eceff1;
+  margin: 0;
+}
+.nav {
+  background: #cfd8dc;
+  padding: 10px;
+  z-index: 100;
+}
+.nav a {
+  text-decoration: none;
+}
+.nav a:hover {
+  text-decoration: underline;
+}
+.nav h2,
+.nav ul {
+  display: inline-block;
+}
+.nav ul {
+  margin: 0;
+  padding: 0;
+}
+.nav li {
+  display: inline;
+  margin-right: 20px;
+}
+.wrapper {
+  max-width: 1000px;
+  margin: 50px auto;
+}
+h2 {
+  margin: 0 10px 10px 0;
+}
+@media (min-width: 100px) {
+  .nav {
+    width: 200px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+  }
+  .nav h2,
+  .nav ul {
+    display: block;
+  }
+  .nav ul {
+    padding-left: 20px;
+  }
+  .nav li {
+    display: list-item;
+  }
+  .main {
+    margin-left: 200px;
+    padding: 0 20px;
+  }
+}
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <div className="nav">
-          <h2>
-            <Link href="/">Jbrowse Prototype</Link>
-          </h2>
-          <ul>
-            {pageLinks.map((link) => (
-              <li key={link.url}>
-                <Link href={link.url}>{link.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="main">
-          <div className="wrapper">
-            <Main />
-            <NextScript />
-          </div>
-        </div>
-      </body>
-    </Html>
-  );
+.nav a,
+label,
+h1,
+h2,
+li {
+  color: #263238;
 }
