@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { JbrowseLinear } from "@/components/JbrowseLinear";
+import { JbrowseLinear } from "@/jbrowse/components/JbrowseLinear";
 import {
   FileSelection,
   tempFileOptions,
   useFileSelection,
-} from "@/components/common";
+} from "@/jbrowse/components/common";
 
 const LinearPage = () => {
   const { checkedState, handleOnChange, selectedFiles } = useFileSelection();

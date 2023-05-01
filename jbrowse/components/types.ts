@@ -17,26 +17,20 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { JbrowseCircular } from "@/jbrowse/components/JbrowseCircular";
-import {
-  FileSelection,
-  tempFileOptions,
-  useFileSelection,
-} from "@/jbrowse/components/common";
+export type JbrowseFileInputFormats = "BAM" | "VCF";
 
-const CircularPage = () => {
-  const { checkedState, handleOnChange, selectedFiles } = useFileSelection();
-  return (
-    <div>
-      <h1>Dynamic file selection</h1>
-      <FileSelection
-        filesList={tempFileOptions}
-        handleOnChange={handleOnChange}
-        checkedState={checkedState}
-      />
-      <JbrowseCircular selectedFiles={selectedFiles} />
-    </div>
-  );
+export type JbrowseFileInputInfo = {
+  [k in JbrowseFileInputFormats]: string;
 };
 
-export default CircularPage;
+export type JbrowseFileInput = {
+  fileId: string;
+  fileName: string;
+  fileType: JbrowseFileInputFormats;
+  fileURI: string;
+  indexURI: string;
+};
+
+export type CheckedState = {
+  [k: string]: boolean;
+};

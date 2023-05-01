@@ -17,26 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { createViewState as createCircularViewState } from "@jbrowse/react-circular-genome-view";
-import { createViewState as createLinearViewState } from "@jbrowse/react-linear-genome-view";
-
-export type JbrowseFileInputFormats = "BAM" | "VCF";
-
-export type JbrowseFileInputInfo = {
-  [k in JbrowseFileInputFormats]: string;
-};
-
-export type CircularViewModel = ReturnType<typeof createCircularViewState>;
-export type LinearViewModel = ReturnType<typeof createLinearViewState>;
-
-export type JbrowseFileInput = {
-  fileId: string;
-  fileName: string;
-  fileType: JbrowseFileInputFormats;
-  fileURI: string;
-  indexURI: string;
-};
-
-export type CheckedState = {
-  [k: string]: boolean;
-};
+export {
+  type LinearViewModel,
+  JbrowseLinear,
+} from "./components/JbrowseLinear";
+export {
+  type CircularViewModel,
+  JbrowseCircular,
+} from "./components/JbrowseCircular";
+export {
+  type JbrowseFileInputFormats,
+  type JbrowseFileInputInfo,
+  type JbrowseFileInput,
+} from "./components/types";
+export { ModifyMainMenu } from "./plugins/ModifyMainMenu";
