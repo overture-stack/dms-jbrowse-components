@@ -1,6 +1,6 @@
-# Jbrowse Prototype
+# DMS Jbrowse Components
 
-This is a NextJS application containing Jbrowse prototypes.
+This package contains a DMS component that makes requests to Song and Score, then displays a Jbrowse visualization.
 
 ## Getting started
 

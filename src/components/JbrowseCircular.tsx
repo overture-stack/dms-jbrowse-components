@@ -17,16 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {
-  createViewState,
-  JBrowseCircularGenomeView,
-} from "@jbrowse/react-circular-genome-view";
-import { useEffect, useState } from "react";
-import { assembly } from "@/jbrowse/utils/assembly";
-import { JbrowseFileInput } from "./types";
-import { getTracks } from "./common";
-import { circularTracks } from "@/jbrowse/utils/circular/tracks";
-import { defaultCircularOptions } from "@/jbrowse/utils/circular/dynamic";
+import { createViewState, JBrowseCircularGenomeView } from '@jbrowse/react-circular-genome-view';
+import { useEffect, useState } from 'react';
+import { assembly } from '../utils/assembly';
+import { JbrowseFileInput } from './types';
+import { getTracks } from './common';
+import { circularTracks } from '../utils/circular/tracks';
+import { defaultCircularOptions } from '../utils/circular/dynamic';
 
 export type CircularViewModel = ReturnType<typeof createViewState>;
 

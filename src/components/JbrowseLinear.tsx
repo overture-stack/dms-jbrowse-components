@@ -17,16 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {
-  createViewState,
-  JBrowseLinearGenomeView,
-} from "@jbrowse/react-linear-genome-view";
-import { useEffect, useState } from "react";
-import { defaultLinearOptions } from "@/jbrowse/utils/linear/dynamic";
-import { getTracks } from "./common";
-import { assembly } from "@/jbrowse/utils/assembly";
-import { ModifyMainMenu } from "../plugins/ModifyMainMenu";
-import { JbrowseFileInput } from "./types";
+import { createViewState, JBrowseLinearGenomeView } from '@jbrowse/react-linear-genome-view';
+import { useEffect, useState } from 'react';
+import { defaultLinearOptions } from '../utils/linear/dynamic';
+import { getTracks } from './common';
+import { assembly } from '../utils/assembly';
+import { ModifyMainMenu } from '../plugins/ModifyMainMenu';
+import { JbrowseFileInput } from './types';
 
 export type LinearViewModel = ReturnType<typeof createViewState>;
 
@@ -46,9 +43,7 @@ export const JbrowseLinear = ({
    * This updates when selected files are updated.
    */
   useEffect(() => {
-    const selectedFileTracks = selectedFiles.length
-      ? getTracks(selectedFiles)
-      : [];
+    const selectedFileTracks = selectedFiles.length ? getTracks(selectedFiles) : [];
     const state = createViewState({
       ...defaultLinearOptions,
       assembly,
