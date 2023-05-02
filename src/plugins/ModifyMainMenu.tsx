@@ -17,57 +17,51 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { MenuSubHeader, SubMenuItem } from "@jbrowse/core/ui";
-
-import Plugin from "@jbrowse/core/Plugin";
-import { version } from "../../package.json";
+import { MenuSubHeader, SubMenuItem } from '@jbrowse/core/ui';
+import Plugin from '@jbrowse/core/Plugin';
 
 const defaultMenuAllowList = [
-  "Export SVG",
-  "Open track selector",
-  "Horizontally flip",
-  "Show...",
-  "Track labels",
+  'Export SVG',
+  'Open track selector',
+  'Horizontally flip',
+  'Show...',
+  'Track labels',
 ];
 
 const customMenuOptions = [
   {
-    label: "Custom menu option",
+    label: 'Custom menu option',
   },
 ];
 
 export class ModifyMainMenu extends Plugin {
-  name = "ModifyMainMenu";
-  version = version;
+  name = 'ModifyMainMenu';
+  version = '1.0.0';
 
   install(pluginManager: any) {
-    pluginManager.addToExtensionPoint(
-      "Core-extendPluggableElement",
-      (pluggableElement: any) => {
-        if (pluggableElement.name === "LinearGenomeView") {
-          const { stateModel } = pluggableElement;
-          const newStateModel = stateModel.extend((self: any) => {
-            const superMenuItems = self.menuItems();
-            const superMenuItemsAllowed = superMenuItems.filter(
-              (menuItem: MenuSubHeader | SubMenuItem) =>
-                defaultMenuAllowList.includes(menuItem.label)
-            );
-            const customMenuItems =
-              superMenuItemsAllowed.concat(customMenuOptions);
+    pluginManager.addToExtensionPoint('Core-extendPluggableElement', (pluggableElement: any) => {
+      if (pluggableElement.name === 'LinearGenomeView') {
+        const { stateModel } = pluggableElement;
+        const newStateModel = stateModel.extend((self: any) => {
+          const superMenuItems = self.menuItems();
+          const superMenuItemsAllowed = superMenuItems.filter(
+            (menuItem: MenuSubHeader | SubMenuItem) =>
+              defaultMenuAllowList.includes(menuItem.label),
+          );
+          const customMenuItems = superMenuItemsAllowed.concat(customMenuOptions);
 
-            return {
-              views: {
-                menuItems() {
-                  return customMenuItems;
-                },
+          return {
+            views: {
+              menuItems() {
+                return customMenuItems;
               },
-            };
-          });
-          pluggableElement.stateModel = newStateModel;
-        }
-        return pluggableElement;
+            },
+          };
+        });
+        pluggableElement.stateModel = newStateModel;
       }
-    );
+      return pluggableElement;
+    });
   }
   configure() {}
 }

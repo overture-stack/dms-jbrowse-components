@@ -1,5 +1,5 @@
 {
-  "name": "dms-jbrowse-components",
+  "name": "@overture/dms-jbrowse",
   "version": "0.1.0",
   "description": "Jbrowse components for DMS",
   "main": "./dist/index.js",
@@ -11,14 +11,13 @@
   "scripts": {
     "build::assets": "cp ./package.json ./dist/package.json && cp ./README.md ./dist/README.md",
     "build::babel": "babel ./src --extensions .tsx,.ts,.js --out-dir ./dist",
-    "build::ts": "tsc -p ./tsconfig.json",
-    "build": "npm run clean && npm run build::assets && npm run declarations && npm run build::babel",
+    "build::ts": "tsc",
+    "build": "npm run clean && npm run build::assets && npm run build::babel",
     "clean": "rm -rf dist && mkdir dist",
-    "declarations": "ttsc --emitDeclarationOnly",
     "dev": "npm run watch",
     "publish-dms-jbrowse": "cd dist && npm publish --access public",
     "type-check": "tsc -p ./tsconfig.json",
-    "watch": "npm run clean && npm run build::assets && (npm run build::babel -- --watch --source-maps=inline & npm run declarations -- --watch)"
+    "watch": "npm run clean && npm run build::assets && (npm run build::babel -- --watch --source-maps=inline)"
   },
   "peerDependencies": {
     "react": "17.x.x",
@@ -51,9 +50,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "ts-node-dev": "^2.0.0",
-    "ttypescript": "^1.5.15",
-    "typescript": "^5.0.4",
-    "webpack": "^5.81.0"
+    "typescript": "^5.0.4"
   },
   "prettier": {
     "printWidth": 100,
