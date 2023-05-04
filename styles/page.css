@@ -1,0 +1,91 @@
+/*
+ * Copyright (c) 2023 The Ontario Institute for Cancer Research. All rights reserved
+ *
+ * This program and the accompanying materials are made available under the terms of
+ * the GNU Affero General Public License v3.0. You should have received a copy of the
+ * GNU Affero General Public License along with this program.
+ *  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ * SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/* CSS for basic page structure, not for Jbrowse */
+
+* {
+  font-family: arial;
+  box-sizing: border-box;
+}
+body {
+  background: #eceff1;
+  margin: 0;
+}
+.nav {
+  background: #cfd8dc;
+  padding: 10px;
+  z-index: 100;
+}
+.nav a {
+  text-decoration: none;
+}
+.nav a:hover {
+  text-decoration: underline;
+}
+.nav h2,
+.nav ul {
+  display: inline-block;
+}
+.nav ul {
+  margin: 0;
+  padding: 0;
+}
+.nav li {
+  display: inline;
+  margin-right: 20px;
+}
+.wrapper {
+  max-width: 1000px;
+  margin: 50px auto;
+}
+h2 {
+  margin: 0 10px 10px 0;
+}
+@media (min-width: 100px) {
+  .nav {
+    width: 200px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+  }
+  .nav h2,
+  .nav ul {
+    display: block;
+  }
+  .nav ul {
+    padding-left: 20px;
+  }
+  .nav li {
+    display: list-item;
+  }
+  .main {
+    margin-left: 200px;
+    padding: 0 20px;
+  }
+}
+
+.nav a,
+label,
+h1,
+h2,
+li {
+  color: #263238;
+}
