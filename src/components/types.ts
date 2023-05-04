@@ -17,11 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export type JbrowseFileInputFormats = "BAM" | "VCF";
+export type JbrowseFileInputFormats = 'BAM' | 'VCF';
 
-export type JbrowseFileInputInfo = {
-  [k in JbrowseFileInputFormats]: string;
-};
+export type JbrowseFileInputInfo = Record<JbrowseFileInputFormats, string>;
 
 export type JbrowseFileInput = {
   fileId: string;
@@ -31,6 +29,4 @@ export type JbrowseFileInput = {
   indexURI: string;
 };
 
-export type CheckedState = {
-  [k: string]: boolean;
-};
+export type CheckedState = Record<string, boolean>;
