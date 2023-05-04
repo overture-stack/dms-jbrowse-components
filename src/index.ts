@@ -17,17 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export {
-  type LinearViewModel,
-  JbrowseLinear,
-} from "./components/JbrowseLinear";
-export {
-  type CircularViewModel,
-  JbrowseCircular,
-} from "./components/JbrowseCircular";
+export { type LinearViewModel, JbrowseLinear } from './components/JbrowseLinear';
+export { type CircularViewModel, JbrowseCircular } from './components/JbrowseCircular';
 export {
   type JbrowseFileInputFormats,
   type JbrowseFileInputInfo,
   type JbrowseFileInput,
-} from "./components/types";
-export { ModifyMainMenu } from "./plugins/ModifyMainMenu";
+} from './components/types';
