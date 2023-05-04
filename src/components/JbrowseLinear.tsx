@@ -22,7 +22,6 @@ import { useEffect, useState } from 'react';
 import { defaultLinearOptions } from '../utils/linear/dynamic';
 import { getTracks } from './common';
 import { assembly } from '../utils/assembly';
-// import { ModifyMainMenu } from '../plugins/ModifyMainMenu';
 import { JbrowseFileInput } from './types';
 
 export type LinearViewModel = ReturnType<typeof createViewState>;
