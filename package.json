@@ -53,5 +53,9 @@
     "printWidth": 100,
     "trailingComma": "all",
     "singleQuote": true
+  },
+  "engines": {
+    "npm": "8.19.2",
+    "node": "18.12.1"
   }
 }
