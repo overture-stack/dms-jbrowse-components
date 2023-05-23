@@ -1,5 +1,5 @@
 {
-  "name": "@overture/dms-jbrowse",
+  "name": "@overture-stack/dms-jbrowse",
   "version": "0.1.0",
   "description": "Jbrowse components for DMS",
   "main": "./dist/index.js",
