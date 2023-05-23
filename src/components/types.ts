@@ -19,8 +19,6 @@
 
 export type JbrowseFileInputFormats = 'BAM' | 'VCF';
 
-export type JbrowseFileInputInfo = Record<JbrowseFileInputFormats, string>;
-
 export type JbrowseFileInput = {
   fileId: string;
   fileName: string;

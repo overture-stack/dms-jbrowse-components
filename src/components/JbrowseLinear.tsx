@@ -31,7 +31,7 @@ export const JbrowseLinear = ({
   selectedFiles = [],
 }: {
   options?: LinearViewModel;
-  selectedFiles?: JbrowseFileInput[];
+  selectedFiles: JbrowseFileInput[];
 }) => {
   const [viewState, setViewState] = useState<LinearViewModel>();
 
