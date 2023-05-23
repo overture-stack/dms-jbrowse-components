@@ -9,14 +9,14 @@
     "url": "https://github.com/overture-stack/dms-jbrowse-components"
   },
   "scripts": {
-    "build::assets": "cp ./package.json ./dist/package.json && cp ./README.md ./dist/README.md",
+    "build::config": "cp ./package.json ./dist/package.json && cp ./README.md ./dist/README.md",
     "build::babel": "babel ./src --extensions .tsx,.ts,.js --out-dir ./dist",
     "build::ts": "tsc",
-    "build": "npm run clean && npm run build::assets && npm run build::babel && npm run build::ts",
+    "build": "npm run clean && npm run build::config && npm run build::babel && npm run build::ts",
     "clean": "rm -rf dist && mkdir dist",
     "dev": "npm run watch",
     "type-check": "tsc -p ./tsconfig.json",
-    "watch": "npm run clean && npm run build::assets && (npm run build::babel -- --watch --source-maps=inline)"
+    "watch": "npm run clean && npm run build::config && (npm run build::babel -- --watch --source-maps=inline)"
   },
   "peerDependencies": {
     "react": "^17.0.0",
