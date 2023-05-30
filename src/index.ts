@@ -21,6 +21,6 @@ export { type LinearViewModel, JbrowseLinear } from './components/JbrowseLinear'
 export { type CircularViewModel, JbrowseCircular } from './components/JbrowseCircular';
 export {
   type JbrowseFileInputFormats,
-  type JbrowseFileInputInfo,
   type JbrowseFileInput,
+  type CheckedState,
 } from './components/types';
