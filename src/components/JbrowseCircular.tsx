@@ -32,7 +32,7 @@ export const JbrowseCircular = ({
   selectedFiles = [],
 }: {
   options?: CircularViewModel;
-  selectedFiles?: JbrowseFileInput[];
+  selectedFiles: JbrowseFileInput[];
 }) => {
   const [viewState, setViewState] = useState<CircularViewModel>();
 
