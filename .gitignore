@@ -18,6 +18,3 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-# temp data files
-/data
