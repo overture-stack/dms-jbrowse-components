@@ -17,26 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { JbrowseLinear } from "@/jbrowse/components/JbrowseLinear";
-import {
-  FileSelection,
-  tempFileOptions,
-  useFileSelection,
-} from "@/jbrowse/components/common";
-
-const LinearPage = () => {
-  const { checkedState, handleOnChange, selectedFiles } = useFileSelection();
-  return (
-    <div>
-      <h1>Dynamic file selection</h1>
-      <FileSelection
-        filesList={tempFileOptions}
-        handleOnChange={handleOnChange}
-        checkedState={checkedState}
-      />
-      <JbrowseLinear selectedFiles={selectedFiles} />
-    </div>
-  );
-};
-
-export default LinearPage;
+export { type LinearViewModel, JbrowseLinear } from './components/JbrowseLinear';
+export { type CircularViewModel, JbrowseCircular } from './components/JbrowseCircular';
+export {
+  type JbrowseFileInputFormats,
+  type JbrowseFileInputInfo,
+  type JbrowseFileInput,
+} from './components/types';

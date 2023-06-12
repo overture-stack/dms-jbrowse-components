@@ -17,27 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {
-  createViewState,
-  JBrowseCircularGenomeView,
-} from "@jbrowse/react-circular-genome-view";
-import { useEffect, useState } from "react";
-import { assembly } from "@/jbrowse/utils/assembly";
-import { JbrowseFileInput } from "./types";
-import { getTracks } from "./common";
-import { circularTracks } from "@/jbrowse/utils/circular/tracks";
-import { defaultCircularOptions } from "@/jbrowse/utils/circular/dynamic";
+import { createViewState, JBrowseLinearGenomeView } from '@jbrowse/react-linear-genome-view';
+import { useEffect, useState } from 'react';
+import { defaultLinearOptions } from '../utils/linear/dynamic';
+import { getTracks } from './common';
+import { assembly } from '../utils/assembly';
+import { JbrowseFileInput } from './types';
 
-export type CircularViewModel = ReturnType<typeof createViewState>;
+export type LinearViewModel = ReturnType<typeof createViewState>;
 
-export const JbrowseCircular = ({
+export const JbrowseLinear = ({
   options,
   selectedFiles = [],
 }: {
-  options?: CircularViewModel;
-  selectedFiles?: JbrowseFileInput[];
+  options?: LinearViewModel;
+  selectedFiles: JbrowseFileInput[];
 }) => {
-  const [viewState, setViewState] = useState<CircularViewModel>();
+  const [viewState, setViewState] = useState<LinearViewModel>();
 
   /*
    * Create tracks for Jbrowse based on the provided selected files,
@@ -46,19 +42,16 @@ export const JbrowseCircular = ({
    * This updates when selected files are updated.
    */
   useEffect(() => {
-    const selectedFileTracks = getTracks(selectedFiles);
+    const selectedFileTracks = selectedFiles.length ? getTracks(selectedFiles) : [];
     const state = createViewState({
-      ...defaultCircularOptions,
+      ...defaultLinearOptions,
       assembly,
-      tracks: [...circularTracks, ...selectedFileTracks],
+      tracks: selectedFileTracks,
       ...(options || {}),
     });
 
     setViewState(state);
 
-    circularTracks.forEach((track) => {
-      state?.session.view.showTrack(track.trackId);
-    });
     selectedFileTracks.forEach((track) => {
       state?.session.view.showTrack(track.trackId);
     });
@@ -68,5 +61,5 @@ export const JbrowseCircular = ({
     return null;
   }
 
-  return <JBrowseCircularGenomeView viewState={viewState} />;
+  return <JBrowseLinearGenomeView viewState={viewState} />;
 };
