@@ -27,4 +27,4 @@ export type JbrowseFileInput = {
   indexURI: string;
 };
 
-export type CheckedState = Record<string, boolean>;
+export type JbrowseFileFormatDict = Record<JbrowseFileInputFormats, string>;
