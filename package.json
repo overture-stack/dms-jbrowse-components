@@ -19,10 +19,10 @@
     "watch": "npm run clean && npm run build::config && (npm run build::babel -- --watch --source-maps=inline)"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.21.5",
@@ -55,7 +55,7 @@
     "singleQuote": true
   },
   "engines": {
-    "npm": "8.19.2",
-    "node": "18.12.1"
+    "npm": ">=8.0.0",
+    "node": ">=18.0.0"
   }
 }
