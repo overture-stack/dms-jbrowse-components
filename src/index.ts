@@ -19,8 +19,4 @@
 
 export { type LinearViewModel, JbrowseLinear } from './components/JbrowseLinear';
 export { type CircularViewModel, JbrowseCircular } from './components/JbrowseCircular';
-export {
-  type JbrowseFileInputFormats,
-  type JbrowseFileInputInfo,
-  type JbrowseFileInput,
-} from './components/types';
+export { type JbrowseFileInputFormats, type JbrowseFileInput } from './components/types';

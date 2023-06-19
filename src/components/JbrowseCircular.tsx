@@ -28,10 +28,10 @@ import { defaultCircularOptions } from '../utils/circular/dynamic';
 export type CircularViewModel = ReturnType<typeof createViewState>;
 
 export const JbrowseCircular = ({
-  options,
+  configuration,
   selectedFiles = [],
 }: {
-  options?: CircularViewModel;
+  configuration?: CircularViewModel['config']['configuration'];
   selectedFiles: JbrowseFileInput[];
 }) => {
   const [viewState, setViewState] = useState<CircularViewModel>();
@@ -47,8 +47,8 @@ export const JbrowseCircular = ({
     const state = createViewState({
       ...defaultCircularOptions,
       assembly,
+      configuration: { ...defaultCircularOptions.configuration, ...(configuration || {}) },
       tracks: [...circularTracks, ...selectedFileTracks],
-      ...(options || {}),
     });
 
     setViewState(state);

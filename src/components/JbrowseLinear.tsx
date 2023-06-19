@@ -27,10 +27,10 @@ import { JbrowseFileInput } from './types';
 export type LinearViewModel = ReturnType<typeof createViewState>;
 
 export const JbrowseLinear = ({
-  options,
+  configuration,
   selectedFiles = [],
 }: {
-  options?: LinearViewModel;
+  configuration?: LinearViewModel['config']['configuration'];
   selectedFiles: JbrowseFileInput[];
 }) => {
   const [viewState, setViewState] = useState<LinearViewModel>();
@@ -46,8 +46,8 @@ export const JbrowseLinear = ({
     const state = createViewState({
       ...defaultLinearOptions,
       assembly,
+      configuration: { ...defaultLinearOptions.configuration, ...(configuration || {}) },
       tracks: selectedFileTracks,
-      ...(options || {}),
     });
 
     setViewState(state);
