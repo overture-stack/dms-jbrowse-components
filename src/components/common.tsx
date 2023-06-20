@@ -34,14 +34,12 @@ export const trackTypes: JbrowseFileFormatDict = {
   VCF: 'VariantTrack',
 };
 
-export const humanGenomeAssembly = 'hg38';
-
-export const getTracks = (inputFiles: JbrowseFileInput[]) =>
+export const getTracks = (inputFiles: JbrowseFileInput[], assemblyName: string) =>
   inputFiles.map((input) => ({
     type: trackTypes[input.fileType],
     trackId: input.fileId,
     name: input.fileName,
-    assemblyNames: [humanGenomeAssembly],
+    assemblyNames: [assemblyName],
     category: [trackTypes[input.fileType]],
     adapter: {
       type: adapterTypes[input.fileType],

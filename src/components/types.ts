@@ -28,3 +28,5 @@ export type JbrowseFileInput = {
 };
 
 export type JbrowseFileFormatDict = Record<JbrowseFileInputFormats, string>;
+
+export type JbrowseAssemblyName = string;
