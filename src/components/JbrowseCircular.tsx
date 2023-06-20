@@ -25,13 +25,15 @@ import { getTracks } from './common';
 import { circularTracks } from '../utils/circular/tracks';
 import { defaultCircularOptions } from '../utils/circular/dynamic';
 
-export type CircularViewModel = ReturnType<typeof createViewState>;
+export type JbrowseCircularAssembly = JbrowseCircularViewModel['config']['assembly'];
 
 export const JbrowseCircular = ({
+  assembly,
   assemblyName,
   configuration,
   selectedFiles = [],
 }: {
+  assembly: JbrowseCircularAssembly;
   assemblyName: string;
   selectedFiles: JbrowseFileInput[];
 }) => {

@@ -24,13 +24,16 @@ import { getTracks } from './common';
 import { assembly } from '../utils/assembly';
 import { JbrowseFileInput } from './types';
 
-export type LinearViewModel = ReturnType<typeof createViewState>;
+export type JbrowseLinearAssembly = JbrowseLinearViewModel['config']['assembly'];
 
 export const JbrowseLinear = ({
+  assembly,
+  assemblyName,
   configuration,
   selectedFiles = [],
 }: {
-  configuration?: LinearViewModel['config']['configuration'];
+  assembly: JbrowseLinearAssembly;
+  assemblyName: string;
   selectedFiles: JbrowseFileInput[];
 }) => {
   const [viewState, setViewState] = useState<LinearViewModel>();
@@ -42,7 +45,7 @@ export const JbrowseLinear = ({
    * This updates when selected files are updated.
    */
   useEffect(() => {
-    const selectedFileTracks = selectedFiles.length ? getTracks(selectedFiles) : [];
+    const selectedFileTracks = selectedFiles.length ? getTracks(selectedFiles, assemblyName) : [];
     const state = createViewState({
       ...defaultLinearOptions,
       assembly,
