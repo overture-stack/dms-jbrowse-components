@@ -22,40 +22,5 @@
 export const defaultLinearOptions = {
   configuration: {},
   connections: [],
-  defaultSession: {
-    name: 'New Session',
-    view: {
-      id: 'linearGenomeView',
-      minimized: false,
-      type: 'LinearGenomeView',
-      offsetPx: 191980240,
-      bpPerPx: 0.1554251851851852,
-      displayedRegions: [
-        {
-          refName: '10',
-          start: 0,
-          end: 133797422,
-          reversed: false,
-          assemblyName: 'GRCh38',
-        },
-      ],
-      tracks: [
-        {
-          id: 'KnIV9-B7F',
-          type: 'ReferenceSequenceTrack',
-          configuration: 'GRCh38-ReferenceSequenceTrack',
-          minimized: false,
-          displays: [
-            {
-              id: 'YzrpwrbY80',
-              type: 'LinearReferenceSequenceDisplay',
-              height: 100,
-              configuration: 'GRCh38-ReferenceSequenceTrack-LinearReferenceSequenceDisplay',
-            },
-          ],
-        },
-      ],
-    },
-  },
   disableAddTracks: true,
 };

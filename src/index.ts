@@ -17,6 +17,6 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { type LinearViewModel, JbrowseLinear } from './components/JbrowseLinear';
-export { type CircularViewModel, JbrowseCircular } from './components/JbrowseCircular';
+export { type JbrowseLinearViewModel, JbrowseLinear } from './components/JbrowseLinear';
+export { type JbrowseCircularViewModel, JbrowseCircular } from './components/JbrowseCircular';
 export { type JbrowseFileInputFormats, type JbrowseFileInput } from './components/types';
