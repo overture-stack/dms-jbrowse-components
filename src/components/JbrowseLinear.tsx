@@ -21,19 +21,26 @@ import { createViewState, JBrowseLinearGenomeView } from '@jbrowse/react-linear-
 import { useEffect, useState } from 'react';
 import { defaultLinearOptions } from '../utils/linear/dynamic';
 import { getTracks } from './common';
-import { assembly } from '../utils/assembly';
-import { JbrowseFileInput } from './types';
+import { JbrowseFileInput, JbrowseLinearDefaultSession } from './types';
 
-export type LinearViewModel = ReturnType<typeof createViewState>;
+export type JbrowseLinearViewModel = ReturnType<typeof createViewState>;
+export type JbrowseLinearAssembly = JbrowseLinearViewModel['config']['assembly'];
+export type JbrowseLinearConfiguration = JbrowseLinearViewModel['config']['configuration'];
 
 export const JbrowseLinear = ({
+  assembly,
+  assemblyName,
   configuration,
+  defaultSession,
   selectedFiles = [],
 }: {
-  configuration?: LinearViewModel['config']['configuration'];
+  assembly: JbrowseLinearAssembly;
+  assemblyName: string;
+  configuration?: JbrowseLinearConfiguration;
+  defaultSession?: JbrowseLinearDefaultSession;
   selectedFiles: JbrowseFileInput[];
 }) => {
-  const [viewState, setViewState] = useState<LinearViewModel>();
+  const [viewState, setViewState] = useState<JbrowseLinearViewModel>();
 
   /*
    * Create tracks for Jbrowse based on the provided selected files,
@@ -42,9 +49,10 @@ export const JbrowseLinear = ({
    * This updates when selected files are updated.
    */
   useEffect(() => {
-    const selectedFileTracks = selectedFiles.length ? getTracks(selectedFiles) : [];
+    const selectedFileTracks = selectedFiles.length ? getTracks(selectedFiles, assemblyName) : [];
     const state = createViewState({
       ...defaultLinearOptions,
+      ...(defaultSession ? { defaultSession } : {}),
       assembly,
       configuration: { ...defaultLinearOptions.configuration, ...(configuration || {}) },
       tracks: selectedFileTracks,

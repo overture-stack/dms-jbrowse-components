@@ -20,12 +20,5 @@
 export const defaultCircularOptions = {
   configuration: {},
   connections: [],
-  defaultSession: {
-    name: "My session",
-    view: {
-      id: "circularView",
-      type: "CircularView",
-    },
-  },
   tracks: [],
 };

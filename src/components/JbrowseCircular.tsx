@@ -19,22 +19,28 @@
 
 import { createViewState, JBrowseCircularGenomeView } from '@jbrowse/react-circular-genome-view';
 import { useEffect, useState } from 'react';
-import { assembly } from '../utils/assembly';
-import { JbrowseFileInput } from './types';
+import { JbrowseFileInput, JbrowseCircularDefaultSession } from './types';
 import { getTracks } from './common';
-import { circularTracks } from '../utils/circular/tracks';
 import { defaultCircularOptions } from '../utils/circular/dynamic';
 
-export type CircularViewModel = ReturnType<typeof createViewState>;
+export type JbrowseCircularViewModel = ReturnType<typeof createViewState>;
+export type JbrowseCircularAssembly = JbrowseCircularViewModel['config']['assembly'];
+export type JbrowseCircularConfiguration = JbrowseCircularViewModel['config']['configuration'];
 
 export const JbrowseCircular = ({
+  assembly,
+  assemblyName,
+  defaultSession,
   configuration,
   selectedFiles = [],
 }: {
-  configuration?: CircularViewModel['config']['configuration'];
+  assembly: JbrowseCircularAssembly;
+  assemblyName: string;
+  configuration?: JbrowseCircularConfiguration;
+  defaultSession?: JbrowseCircularDefaultSession;
   selectedFiles: JbrowseFileInput[];
 }) => {
-  const [viewState, setViewState] = useState<CircularViewModel>();
+  const [viewState, setViewState] = useState<JbrowseCircularViewModel>();
 
   /*
    * Create tracks for Jbrowse based on the provided selected files,
@@ -43,19 +49,16 @@ export const JbrowseCircular = ({
    * This updates when selected files are updated.
    */
   useEffect(() => {
-    const selectedFileTracks = getTracks(selectedFiles);
+    const selectedFileTracks = getTracks(selectedFiles, assemblyName);
     const state = createViewState({
       ...defaultCircularOptions,
+      ...(defaultSession ? { defaultSession } : {}),
       assembly,
       configuration: { ...defaultCircularOptions.configuration, ...(configuration || {}) },
-      tracks: [...circularTracks, ...selectedFileTracks],
+      tracks: selectedFileTracks,
     });
 
     setViewState(state);
-
-    circularTracks.forEach((track) => {
-      state?.session.view.showTrack(track.trackId);
-    });
     selectedFileTracks.forEach((track) => {
       state?.session.view.showTrack(track.trackId);
     });
