@@ -30,3 +30,41 @@ export type JbrowseFileInput = {
 export type JbrowseFileFormatDict = Record<JbrowseFileInputFormats, string>;
 
 export type JbrowseAssemblyName = string;
+
+export type JbrowseCircularDefaultSession = {
+  name: string;
+  view: {
+    id: string;
+    type: string;
+  };
+};
+
+export type JbrowseLinearDefaultSession = {
+  name: string;
+  view: {
+    id: string;
+    minimized: boolean;
+    type: string;
+    offsetPx: number;
+    bpPerPx: number;
+    displayedRegions: Array<{
+      refName: string;
+      start: number;
+      end: number;
+      reversed: boolean;
+      assemblyName: string;
+    }>;
+    tracks: Array<{
+      id: string;
+      type: string;
+      configuration: string;
+      minimized: boolean;
+      displays: Array<{
+        id: string;
+        type: string;
+        height: number;
+        configuration: string;
+      }>;
+    }>;
+  };
+};

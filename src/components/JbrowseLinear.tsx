@@ -21,12 +21,11 @@ import { createViewState, JBrowseLinearGenomeView } from '@jbrowse/react-linear-
 import { useEffect, useState } from 'react';
 import { defaultLinearOptions } from '../utils/linear/dynamic';
 import { getTracks } from './common';
-import { JbrowseFileInput } from './types';
+import { JbrowseFileInput, JbrowseLinearDefaultSession } from './types';
 
 export type JbrowseLinearViewModel = ReturnType<typeof createViewState>;
 export type JbrowseLinearAssembly = JbrowseLinearViewModel['config']['assembly'];
 export type JbrowseLinearConfiguration = JbrowseLinearViewModel['config']['configuration'];
-export type JbrowseCircularDefaultSession = JbrowseLinearViewModel['session'];
 
 export const JbrowseLinear = ({
   assembly,
@@ -38,7 +37,7 @@ export const JbrowseLinear = ({
   assembly: JbrowseLinearAssembly;
   assemblyName: string;
   configuration?: JbrowseLinearConfiguration;
-  defaultSession?: JbrowseCircularDefaultSession;
+  defaultSession?: JbrowseLinearDefaultSession;
   selectedFiles: JbrowseFileInput[];
 }) => {
   const [viewState, setViewState] = useState<JbrowseLinearViewModel>();
@@ -53,7 +52,7 @@ export const JbrowseLinear = ({
     const selectedFileTracks = selectedFiles.length ? getTracks(selectedFiles, assemblyName) : [];
     const state = createViewState({
       ...defaultLinearOptions,
-      ...(defaultSession || {}),
+      ...(defaultSession ? { defaultSession } : {}),
       assembly,
       configuration: { ...defaultLinearOptions.configuration, ...(configuration || {}) },
       tracks: selectedFileTracks,

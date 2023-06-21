@@ -19,14 +19,13 @@
 
 import { createViewState, JBrowseCircularGenomeView } from '@jbrowse/react-circular-genome-view';
 import { useEffect, useState } from 'react';
-import { JbrowseFileInput } from './types';
+import { JbrowseFileInput, JbrowseCircularDefaultSession } from './types';
 import { getTracks } from './common';
 import { defaultCircularOptions } from '../utils/circular/dynamic';
 
 export type JbrowseCircularViewModel = ReturnType<typeof createViewState>;
 export type JbrowseCircularAssembly = JbrowseCircularViewModel['config']['assembly'];
 export type JbrowseCircularConfiguration = JbrowseCircularViewModel['config']['configuration'];
-export type JbrowseCircularDefaultSession = JbrowseCircularViewModel['session'];
 
 export const JbrowseCircular = ({
   assembly,
@@ -53,7 +52,7 @@ export const JbrowseCircular = ({
     const selectedFileTracks = getTracks(selectedFiles, assemblyName);
     const state = createViewState({
       ...defaultCircularOptions,
-      ...(defaultSession || {}),
+      ...(defaultSession ? { defaultSession } : {}),
       assembly,
       configuration: { ...defaultCircularOptions.configuration, ...(configuration || {}) },
       tracks: selectedFileTracks,
