@@ -95,10 +95,11 @@ pipeline {
                         )
                     ]) {
                         script {
-                            // we still want to run the platform deploy even if this fails, hence try-catch
+                            // we still want to run the deploy even if this fails, hence try-catch
                             try {
                                 sh 'git reset --hard HEAD'
                                 sh 'git pull --tags'
+                                sh 'npm run build'
                                 sh "npm config set '//registry.npmjs.org/:_authToken' \"${NPM_TOKEN}\""
                                 sh 'npm publish --access public'
                                 // send a notification to the slack #overture-jenkins channel in OICR workspace
