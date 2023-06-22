@@ -2,8 +2,10 @@
 node_modules
 
 # production
-/dist
 *.d.ts
+dist
+package
+overture-stack-dms-jbrowse-components-*.tgz
 
 # misc
 .DS_Store

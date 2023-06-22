@@ -95,7 +95,7 @@ pipeline {
                         )
                     ]) {
                         script {
-                            // we still want to run the platform deploy even if this fails, hence try-catch
+                            // we still want other steps to happen after even if this fails, hence try-catch
                             try {
                                 sh 'git reset --hard HEAD'
                                 sh 'git pull --tags'
