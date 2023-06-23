@@ -18,10 +18,10 @@
     "watch": "npm run clean && (npm run build::babel -- --watch --source-maps=inline)"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/react-dom": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.21.5",
