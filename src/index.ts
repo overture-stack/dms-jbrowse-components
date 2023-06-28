@@ -24,12 +24,6 @@ export {
   type JbrowseLinearViewModel,
 } from './components/JbrowseLinear';
 export {
-  JbrowseCircular,
-  type JbrowseCircularAssembly,
-  type JbrowseCircularConfiguration,
-  type JbrowseCircularViewModel,
-} from './components/JbrowseCircular';
-export {
   type JbrowseCircularDefaultSession,
   type JbrowseFileInput,
   type JbrowseFileInputFormats,
