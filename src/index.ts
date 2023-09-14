@@ -18,6 +18,12 @@
  */
 
 export {
+  JbrowseCircular,
+  type JbrowseCircularAssembly,
+  type JbrowseCircularConfiguration,
+  type JbrowseCircularViewModel,
+} from './components/JbrowseCircular';
+export {
   JbrowseLinear,
   type JbrowseLinearAssembly,
   type JbrowseLinearConfiguration,
